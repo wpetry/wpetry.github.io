@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Communities on Ecodemography</title>
-    <link>wpetry.github.io/tags/communities/</link>
+    <link>http://wpetry.github.io/tags/communities/</link>
     <description>Recent content in Communities on Ecodemography</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017 William Petry</copyright>
     <lastBuildDate>Thu, 01 Jan 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="wpetry.github.io/tags/communities/" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/communities/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Globally-distributed ecology</title>
-      <link>wpetry.github.io/project/distecology/</link>
+      <link>http://wpetry.github.io/project/distecology/</link>
       <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/project/distecology/</guid>
+      <guid>http://wpetry.github.io/project/distecology/</guid>
       <description>
 
 &lt;p&gt;[&lt;em&gt;Dummy caterpillar at Zackenberg, Greenland (photo: Tomas Roslin)&lt;/em&gt;]&lt;/p&gt;

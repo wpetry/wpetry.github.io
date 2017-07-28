@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ecodemography on Ecodemography</title>
-    <link>wpetry.github.io/</link>
+    <link>http://wpetry.github.io/</link>
     <description>Recent content in Ecodemography on Ecodemography</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017 William Petry</copyright>
     <lastBuildDate>Wed, 20 Apr 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="wpetry.github.io/" rel="self" type="application/rss+xml" />
+    <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>The T[R]ue Size Of...</title>
-      <link>wpetry.github.io/post/truesizeof/</link>
+      <link>http://wpetry.github.io/post/truesizeof/</link>
       <pubDate>Fri, 21 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/post/truesizeof/</guid>
+      <guid>http://wpetry.github.io/post/truesizeof/</guid>
       <description>
 
 &lt;h1 id=&#34;1-objective&#34;&gt;1. Objective&lt;/h1&gt;
 
-&lt;p&gt;&lt;img src=&#34;wpetry.github.io/img/Overlay.jpeg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/Overlay.jpeg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;My current field work is split between the western United States and Switzerland, areas where political boundaries are drawn on vastly different scales. This makes communicating scale very difficult to audiences in both places. &lt;strong&gt;Here I show how to overlay countries and other administrative boundaries from all over the world using R, revealing their relative sizes in a visual, visceral way.&lt;/strong&gt;&lt;/p&gt;
 
@@ -144,7 +144,7 @@ overlay2
 
 &lt;p&gt;A much richer map would show the locations of my &lt;a href=&#34;http://datadryad.org/resource/doi:10.5061/dryad.1cf8p/5&#34; target=&#34;_blank&#34;&gt;study sites&lt;/a&gt; within Gunnison County, giving a better sense of where I actually worked. Perhaps a shaded relief might be nice to help convey the topographic complexity of Gunnison County. Carefully layering these data with &lt;code&gt;ggplot&lt;/code&gt; makes this all possible, but these are best saved for another tutorial.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;wpetry.github.io/img/Overlay2.jpeg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/Overlay2.jpeg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now if only it were so easy to &lt;code&gt;elide&lt;/code&gt; a burrito from &lt;a href=&#34;http://www.teocallitamale.com/&#34; target=&#34;_blank&#34;&gt;Teocalli Tamale&lt;/a&gt; over here to Switzerland&amp;hellip;&lt;/p&gt;
 </description>
@@ -152,10 +152,10 @@ overlay2
     
     <item>
       <title>Higher predation risk for insect prey at low latitudes and elevations</title>
-      <link>wpetry.github.io/publication/science_2017/</link>
+      <link>http://wpetry.github.io/publication/science_2017/</link>
       <pubDate>Fri, 19 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/publication/science_2017/</guid>
+      <guid>http://wpetry.github.io/publication/science_2017/</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;http://www.helsinki.fi/foodwebs/dummycaterpillars/&#34; target=&#34;_blank&#34;&gt;Global Dummy Caterpillar Project&lt;/a&gt; is:&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://www.helsinki.fi/foodwebs/index.htm&#34; target=&#34;_blank&#34;&gt;Tomas Roslin&lt;/a&gt; (Project Leader), &lt;a href=&#34;http://www.zoo.ox.ac.uk/people/view/slade_e.htm&#34; target=&#34;_blank&#34;&gt;Eleanor Slade&lt;/a&gt; (Project Leader), &lt;a href=&#34;http://baloun.entu.cas.cz/png/cv-novotny-vojtech.html&#34; target=&#34;_blank&#34;&gt;Vojtech Novotny&lt;/a&gt; (Project Leader), &lt;a href=&#34;https://tuhat.helsinki.fi/portal/en/persons/bess-hardwick(deb2f83f-c8f6-4ddc-9a23-a2531f416fb5).html&#34; target=&#34;_blank&#34;&gt;Bess Hardwick&lt;/a&gt; (Project Coordinator)&lt;/p&gt;
@@ -167,13 +167,13 @@ overlay2
     
     <item>
       <title>Climate effects on structured populations</title>
-      <link>wpetry.github.io/post/tempdemog/</link>
+      <link>http://wpetry.github.io/post/tempdemog/</link>
       <pubDate>Tue, 02 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/post/tempdemog/</guid>
+      <guid>http://wpetry.github.io/post/tempdemog/</guid>
       <description>
 
-&lt;p&gt;&lt;img src=&#34;wpetry.github.io/img/temp_shinyapp.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/temp_shinyapp.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;[Start playing with &lt;a href=&#34;https://ecodynamics.shinyapps.io/temperature/&#34; target=&#34;_blank&#34;&gt;the R Shiny app&lt;/a&gt; or download the source files from my &lt;a href=&#34;https://github.com/wpetry/ETHZQuantMethods/tree/master/Temperature&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt; to run it locally in RStudio]&lt;/em&gt;&lt;/p&gt;
 
@@ -199,10 +199,10 @@ overlay2
     
     <item>
       <title>Illuminating the world&#39;s demographic dark corners</title>
-      <link>wpetry.github.io/post/demogdarkcorners/</link>
+      <link>http://wpetry.github.io/post/demogdarkcorners/</link>
       <pubDate>Fri, 28 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/post/demogdarkcorners/</guid>
+      <guid>http://wpetry.github.io/post/demogdarkcorners/</guid>
       <description>
 
 &lt;p&gt;&lt;em&gt;[Originally posted on the &lt;a href=&#34;https://compadredb.wordpress.com/2017/04/28/illuminating-the-worlds-demographic-dark-corners/&#34; target=&#34;_blank&#34;&gt;COM(P)ADRE blog&lt;/a&gt; on 28 April 2017]&lt;/em&gt;&lt;/p&gt;
@@ -215,7 +215,7 @@ overlay2
 
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;img src=&#34;wpetry.github.io/img/comp_iso.png&#34; alt=&#34;fig1&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/comp_iso.png&#34; alt=&#34;fig1&#34; /&gt;&lt;/p&gt;
 
 &lt;h5 id=&#34;fig-1-the-current-darkest-corners-of-demography-for-a-plant-matrix-population-models-in-the-compadre-database-and-b-animal-matrix-population-models-in-the-comadre-database-the-most-isolated-points-from-all-matrix-population-models-are-shown-as-colored-dots-blue-square-of-the-whole-earth-green-triangle-of-land-masses-yellow-circle-of-land-masses-excluding-the-largely-uninhabitable-antarctica&#34;&gt;Fig. 1. The current darkest corners of demography for (A) plant matrix population models in the COMPADRE database and (B) animal matrix population models in the COMADRE database. The most isolated points from all matrix population models are shown as colored dots (blue square: of the whole Earth, green triangle: of land masses, yellow circle: of land masses excluding the largely uninhabitable Antarctica).&lt;/h5&gt;
 
@@ -227,8 +227,8 @@ overlay2
 
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;img src=&#34;wpetry.github.io/img/iso_compadre.gif&#34; alt=&#34;fig2a&#34; /&gt;&lt;br /&gt;
-&lt;img src=&#34;wpetry.github.io/img/iso_comadre.gif&#34; alt=&#34;fig2b&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/iso_compadre.gif&#34; alt=&#34;fig2a&#34; /&gt;&lt;br /&gt;
+&lt;img src=&#34;http://wpetry.github.io/img/iso_comadre.gif&#34; alt=&#34;fig2b&#34; /&gt;&lt;/p&gt;
 
 &lt;h6 id=&#34;fig-2-how-the-demographic-darkest-corner-has-moved-since-the-advent-of-matrix-population-models-1965-2016-plant-matrix-models-from-compadre-above-and-animal-matrix-models-from-comadre-below-are-shown-separately-with-symbols-as-in-fig-1-the-color-gradient-rescales-each-year-to-better-highlight-the-least-known-areas&#34;&gt;Fig. 2. How the demographic darkest corner has moved since the advent of matrix population models (1965-2016). Plant matrix models from COMPADRE (above) and animal matrix models from COMADRE (below) are shown separately with symbols as in Fig. 1. The color gradient rescales each year to better highlight the least known areas.&lt;/h6&gt;
 
@@ -238,7 +238,7 @@ overlay2
 
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;img src=&#34;wpetry.github.io/img/iso_change_time.png&#34; alt=&#34;fig3&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/iso_change_time.png&#34; alt=&#34;fig3&#34; /&gt;&lt;/p&gt;
 
 &lt;h6 id=&#34;fig-3-decline-in-the-maximum-solid-line-and-median-dashed-line-distances-away-from-a-matrix-population-model-for-compadre-left-and-comadre-right-over-time-colours-show-different-subsets-where-blue-is-any-point-on-land-or-water-green-is-restricted-to-points-on-land-and-yellow-is-restricted-to-points-on-land-excluding-antarctica-note-that-the-maximum-possible-isolation-distance-on-earth-is-approximately-20-038-km&#34;&gt;Fig. 3. Decline in the maximum (solid line) and median (dashed line) distances away from a matrix population model for COMPADRE (left) and COMADRE (right) over time. Colours show different subsets where blue is any point on land or water, green is restricted to points on land, and yellow is restricted to points on land excluding Antarctica. Note that the maximum possible isolation distance on Earth is approximately 20,038 km.&lt;/h6&gt;
 
@@ -282,10 +282,10 @@ overlay2
     
     <item>
       <title>Hello World!</title>
-      <link>wpetry.github.io/post/helloworld/</link>
+      <link>http://wpetry.github.io/post/helloworld/</link>
       <pubDate>Sat, 18 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/post/helloworld/</guid>
+      <guid>http://wpetry.github.io/post/helloworld/</guid>
       <description>&lt;p&gt;In the spirit of open data, I&amp;rsquo;ve moved towards posting the raw data and code that underlie my science (see &lt;a href=&#34;http://dx.doi.org/10.5061/dryad.d6rb0&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;, &lt;a href=&#34;http://dx.doi.org/10.5061/dryad.1cf8p&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;, and &lt;a href=&#34;http://dx.doi.org/10.5061/dryad.j432q&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt; for recent examples). Occaisionally I work on small side projects that make for neat stories, but don&amp;rsquo;t always make it to a publication. Here is where I&amp;rsquo;ll post short write ups that highlight ideas and data analysis tools.&lt;/p&gt;
 
 &lt;p&gt;Hardly regular, hopefully somewhat original&amp;hellip;&lt;/p&gt;
@@ -294,28 +294,28 @@ overlay2
     
     <item>
       <title>Interaction rewiring and the rapid turnover of plant–pollinator networks</title>
-      <link>wpetry.github.io/publication/ecoletts_2017/</link>
+      <link>http://wpetry.github.io/publication/ecoletts_2017/</link>
       <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/publication/ecoletts_2017/</guid>
+      <guid>http://wpetry.github.io/publication/ecoletts_2017/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Sex-specific responses to climate change in plants alter population sex ratio and performance</title>
-      <link>wpetry.github.io/publication/science_2016/</link>
+      <link>http://wpetry.github.io/publication/science_2016/</link>
       <pubDate>Wed, 01 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/publication/science_2016/</guid>
+      <guid>http://wpetry.github.io/publication/science_2016/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Two-sex population dynamics</title>
-      <link>wpetry.github.io/project/sexratio/</link>
+      <link>http://wpetry.github.io/project/sexratio/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/project/sexratio/</guid>
+      <guid>http://wpetry.github.io/project/sexratio/</guid>
       <description>&lt;p&gt;The rarity of one sex can have profound ecological and evolutionary impacts on populations – ranging from mate limitation, loss of genetic diversity, and altered regimes of sexual selection. These population changes may also affect other species by altering species interactions. Despite widespread evidence of skewed sex ratios across the tree of life, we rarely understand their causes and consequences.&lt;/p&gt;
 
 &lt;p&gt;Populations of the long-lived montane herb &lt;em&gt;Valeriana edulis&lt;/em&gt; (Caprifoliaceae) are increasingly female-biased across its 2000 m elevation range.  Moreover, local climate change has altered the balance of the sexes in parallel.  Emerging techniques in two-sex demographic models offer a unique opportunity to not only understand the demographic causes underlying driving sex ratio skews in response to climate but also the consequences of skewed sex ratios for population persistence.&lt;/p&gt;
@@ -334,10 +334,10 @@ overlay2
     
     <item>
       <title>Globally-distributed ecology</title>
-      <link>wpetry.github.io/project/distecology/</link>
+      <link>http://wpetry.github.io/project/distecology/</link>
       <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/project/distecology/</guid>
+      <guid>http://wpetry.github.io/project/distecology/</guid>
       <description>
 
 &lt;p&gt;[&lt;em&gt;Dummy caterpillar at Zackenberg, Greenland (photo: Tomas Roslin)&lt;/em&gt;]&lt;/p&gt;
@@ -379,55 +379,55 @@ overlay2
     
     <item>
       <title>Plant defence responses to volatile alert signals are population-specific</title>
-      <link>wpetry.github.io/publication/oikos_2015/</link>
+      <link>http://wpetry.github.io/publication/oikos_2015/</link>
       <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/publication/oikos_2015/</guid>
+      <guid>http://wpetry.github.io/publication/oikos_2015/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Trade‐offs between constitutive and induced defences drive geographical and climatic clines in pine chemical defences</title>
-      <link>wpetry.github.io/publication/ecoletts_2014/</link>
+      <link>http://wpetry.github.io/publication/ecoletts_2014/</link>
       <pubDate>Thu, 01 May 2014 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/publication/ecoletts_2014/</guid>
+      <guid>http://wpetry.github.io/publication/ecoletts_2014/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Mechanisms underlying plant sexual dimorphism in multi‐trophic arthropod communities</title>
-      <link>wpetry.github.io/publication/ecology_2013/</link>
+      <link>http://wpetry.github.io/publication/ecology_2013/</link>
       <pubDate>Sun, 01 Sep 2013 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/publication/ecology_2013/</guid>
+      <guid>http://wpetry.github.io/publication/ecology_2013/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Plant sex and induced responses independently influence herbivore performance, natural enemies and aphid-tending ants</title>
-      <link>wpetry.github.io/publication/arthroplantint_2012/</link>
+      <link>http://wpetry.github.io/publication/arthroplantint_2012/</link>
       <pubDate>Sat, 01 Dec 2012 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/publication/arthroplantint_2012/</guid>
+      <guid>http://wpetry.github.io/publication/arthroplantint_2012/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Influence of macronutrient imbalance on native ant foraging and interspecific interactions in the field</title>
-      <link>wpetry.github.io/publication/ecolentomol_2012/</link>
+      <link>http://wpetry.github.io/publication/ecolentomol_2012/</link>
       <pubDate>Fri, 25 May 2012 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/publication/ecolentomol_2012/</guid>
+      <guid>http://wpetry.github.io/publication/ecolentomol_2012/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A quantitative comparison of two sample methods for collecting Amblyomma americanum and Dermacentor variabilis (Acari: Ixodidae) in Missouri</title>
-      <link>wpetry.github.io/publication/expapplacar_2010/</link>
+      <link>http://wpetry.github.io/publication/expapplacar_2010/</link>
       <pubDate>Wed, 01 Dec 2010 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/publication/expapplacar_2010/</guid>
+      <guid>http://wpetry.github.io/publication/expapplacar_2010/</guid>
       <description></description>
     </item>
     

@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Ecodemography</title>
-    <link>wpetry.github.io/post/</link>
+    <link>http://wpetry.github.io/post/</link>
     <description>Recent content in Posts on Ecodemography</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017 William Petry</copyright>
     <lastBuildDate>Fri, 21 Jul 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="wpetry.github.io/post/" rel="self" type="application/rss+xml" />
+    <atom:link href="/post/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>The T[R]ue Size Of...</title>
-      <link>wpetry.github.io/post/truesizeof/</link>
+      <link>http://wpetry.github.io/post/truesizeof/</link>
       <pubDate>Fri, 21 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/post/truesizeof/</guid>
+      <guid>http://wpetry.github.io/post/truesizeof/</guid>
       <description>
 
 &lt;h1 id=&#34;1-objective&#34;&gt;1. Objective&lt;/h1&gt;
 
-&lt;p&gt;&lt;img src=&#34;wpetry.github.io/img/Overlay.jpeg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/Overlay.jpeg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;My current field work is split between the western United States and Switzerland, areas where political boundaries are drawn on vastly different scales. This makes communicating scale very difficult to audiences in both places. &lt;strong&gt;Here I show how to overlay countries and other administrative boundaries from all over the world using R, revealing their relative sizes in a visual, visceral way.&lt;/strong&gt;&lt;/p&gt;
 
@@ -144,7 +144,7 @@ overlay2
 
 &lt;p&gt;A much richer map would show the locations of my &lt;a href=&#34;http://datadryad.org/resource/doi:10.5061/dryad.1cf8p/5&#34; target=&#34;_blank&#34;&gt;study sites&lt;/a&gt; within Gunnison County, giving a better sense of where I actually worked. Perhaps a shaded relief might be nice to help convey the topographic complexity of Gunnison County. Carefully layering these data with &lt;code&gt;ggplot&lt;/code&gt; makes this all possible, but these are best saved for another tutorial.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;wpetry.github.io/img/Overlay2.jpeg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/Overlay2.jpeg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now if only it were so easy to &lt;code&gt;elide&lt;/code&gt; a burrito from &lt;a href=&#34;http://www.teocallitamale.com/&#34; target=&#34;_blank&#34;&gt;Teocalli Tamale&lt;/a&gt; over here to Switzerland&amp;hellip;&lt;/p&gt;
 </description>
@@ -152,13 +152,13 @@ overlay2
     
     <item>
       <title>Climate effects on structured populations</title>
-      <link>wpetry.github.io/post/tempdemog/</link>
+      <link>http://wpetry.github.io/post/tempdemog/</link>
       <pubDate>Tue, 02 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/post/tempdemog/</guid>
+      <guid>http://wpetry.github.io/post/tempdemog/</guid>
       <description>
 
-&lt;p&gt;&lt;img src=&#34;wpetry.github.io/img/temp_shinyapp.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/temp_shinyapp.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;[Start playing with &lt;a href=&#34;https://ecodynamics.shinyapps.io/temperature/&#34; target=&#34;_blank&#34;&gt;the R Shiny app&lt;/a&gt; or download the source files from my &lt;a href=&#34;https://github.com/wpetry/ETHZQuantMethods/tree/master/Temperature&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt; to run it locally in RStudio]&lt;/em&gt;&lt;/p&gt;
 
@@ -184,10 +184,10 @@ overlay2
     
     <item>
       <title>Illuminating the world&#39;s demographic dark corners</title>
-      <link>wpetry.github.io/post/demogdarkcorners/</link>
+      <link>http://wpetry.github.io/post/demogdarkcorners/</link>
       <pubDate>Fri, 28 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/post/demogdarkcorners/</guid>
+      <guid>http://wpetry.github.io/post/demogdarkcorners/</guid>
       <description>
 
 &lt;p&gt;&lt;em&gt;[Originally posted on the &lt;a href=&#34;https://compadredb.wordpress.com/2017/04/28/illuminating-the-worlds-demographic-dark-corners/&#34; target=&#34;_blank&#34;&gt;COM(P)ADRE blog&lt;/a&gt; on 28 April 2017]&lt;/em&gt;&lt;/p&gt;
@@ -200,7 +200,7 @@ overlay2
 
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;img src=&#34;wpetry.github.io/img/comp_iso.png&#34; alt=&#34;fig1&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/comp_iso.png&#34; alt=&#34;fig1&#34; /&gt;&lt;/p&gt;
 
 &lt;h5 id=&#34;fig-1-the-current-darkest-corners-of-demography-for-a-plant-matrix-population-models-in-the-compadre-database-and-b-animal-matrix-population-models-in-the-comadre-database-the-most-isolated-points-from-all-matrix-population-models-are-shown-as-colored-dots-blue-square-of-the-whole-earth-green-triangle-of-land-masses-yellow-circle-of-land-masses-excluding-the-largely-uninhabitable-antarctica&#34;&gt;Fig. 1. The current darkest corners of demography for (A) plant matrix population models in the COMPADRE database and (B) animal matrix population models in the COMADRE database. The most isolated points from all matrix population models are shown as colored dots (blue square: of the whole Earth, green triangle: of land masses, yellow circle: of land masses excluding the largely uninhabitable Antarctica).&lt;/h5&gt;
 
@@ -212,8 +212,8 @@ overlay2
 
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;img src=&#34;wpetry.github.io/img/iso_compadre.gif&#34; alt=&#34;fig2a&#34; /&gt;&lt;br /&gt;
-&lt;img src=&#34;wpetry.github.io/img/iso_comadre.gif&#34; alt=&#34;fig2b&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/iso_compadre.gif&#34; alt=&#34;fig2a&#34; /&gt;&lt;br /&gt;
+&lt;img src=&#34;http://wpetry.github.io/img/iso_comadre.gif&#34; alt=&#34;fig2b&#34; /&gt;&lt;/p&gt;
 
 &lt;h6 id=&#34;fig-2-how-the-demographic-darkest-corner-has-moved-since-the-advent-of-matrix-population-models-1965-2016-plant-matrix-models-from-compadre-above-and-animal-matrix-models-from-comadre-below-are-shown-separately-with-symbols-as-in-fig-1-the-color-gradient-rescales-each-year-to-better-highlight-the-least-known-areas&#34;&gt;Fig. 2. How the demographic darkest corner has moved since the advent of matrix population models (1965-2016). Plant matrix models from COMPADRE (above) and animal matrix models from COMADRE (below) are shown separately with symbols as in Fig. 1. The color gradient rescales each year to better highlight the least known areas.&lt;/h6&gt;
 
@@ -223,7 +223,7 @@ overlay2
 
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;img src=&#34;wpetry.github.io/img/iso_change_time.png&#34; alt=&#34;fig3&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/iso_change_time.png&#34; alt=&#34;fig3&#34; /&gt;&lt;/p&gt;
 
 &lt;h6 id=&#34;fig-3-decline-in-the-maximum-solid-line-and-median-dashed-line-distances-away-from-a-matrix-population-model-for-compadre-left-and-comadre-right-over-time-colours-show-different-subsets-where-blue-is-any-point-on-land-or-water-green-is-restricted-to-points-on-land-and-yellow-is-restricted-to-points-on-land-excluding-antarctica-note-that-the-maximum-possible-isolation-distance-on-earth-is-approximately-20-038-km&#34;&gt;Fig. 3. Decline in the maximum (solid line) and median (dashed line) distances away from a matrix population model for COMPADRE (left) and COMADRE (right) over time. Colours show different subsets where blue is any point on land or water, green is restricted to points on land, and yellow is restricted to points on land excluding Antarctica. Note that the maximum possible isolation distance on Earth is approximately 20,038 km.&lt;/h6&gt;
 
@@ -267,10 +267,10 @@ overlay2
     
     <item>
       <title>Hello World!</title>
-      <link>wpetry.github.io/post/helloworld/</link>
+      <link>http://wpetry.github.io/post/helloworld/</link>
       <pubDate>Sat, 18 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/post/helloworld/</guid>
+      <guid>http://wpetry.github.io/post/helloworld/</guid>
       <description>&lt;p&gt;In the spirit of open data, I&amp;rsquo;ve moved towards posting the raw data and code that underlie my science (see &lt;a href=&#34;http://dx.doi.org/10.5061/dryad.d6rb0&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;, &lt;a href=&#34;http://dx.doi.org/10.5061/dryad.1cf8p&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;, and &lt;a href=&#34;http://dx.doi.org/10.5061/dryad.j432q&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt; for recent examples). Occaisionally I work on small side projects that make for neat stories, but don&amp;rsquo;t always make it to a publication. Here is where I&amp;rsquo;ll post short write ups that highlight ideas and data analysis tools.&lt;/p&gt;
 
 &lt;p&gt;Hardly regular, hopefully somewhat original&amp;hellip;&lt;/p&gt;

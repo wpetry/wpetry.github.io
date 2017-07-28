@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Fieldecology on Ecodemography</title>
-    <link>wpetry.github.io/tags/fieldecology/</link>
+    <link>http://wpetry.github.io/tags/fieldecology/</link>
     <description>Recent content in Fieldecology on Ecodemography</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017 William Petry</copyright>
     <lastBuildDate>Fri, 01 Jan 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="wpetry.github.io/tags/fieldecology/" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/fieldecology/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Two-sex population dynamics</title>
-      <link>wpetry.github.io/project/sexratio/</link>
+      <link>http://wpetry.github.io/project/sexratio/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/project/sexratio/</guid>
+      <guid>http://wpetry.github.io/project/sexratio/</guid>
       <description>&lt;p&gt;The rarity of one sex can have profound ecological and evolutionary impacts on populations – ranging from mate limitation, loss of genetic diversity, and altered regimes of sexual selection. These population changes may also affect other species by altering species interactions. Despite widespread evidence of skewed sex ratios across the tree of life, we rarely understand their causes and consequences.&lt;/p&gt;
 
 &lt;p&gt;Populations of the long-lived montane herb &lt;em&gt;Valeriana edulis&lt;/em&gt; (Caprifoliaceae) are increasingly female-biased across its 2000 m elevation range.  Moreover, local climate change has altered the balance of the sexes in parallel.  Emerging techniques in two-sex demographic models offer a unique opportunity to not only understand the demographic causes underlying driving sex ratio skews in response to climate but also the consequences of skewed sex ratios for population persistence.&lt;/p&gt;
@@ -34,10 +34,10 @@
     
     <item>
       <title>Globally-distributed ecology</title>
-      <link>wpetry.github.io/project/distecology/</link>
+      <link>http://wpetry.github.io/project/distecology/</link>
       <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
       
-      <guid>wpetry.github.io/project/distecology/</guid>
+      <guid>http://wpetry.github.io/project/distecology/</guid>
       <description>
 
 &lt;p&gt;[&lt;em&gt;Dummy caterpillar at Zackenberg, Greenland (photo: Tomas Roslin)&lt;/em&gt;]&lt;/p&gt;
