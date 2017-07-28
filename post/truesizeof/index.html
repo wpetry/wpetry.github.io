@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.25.1" />
+  <meta name="author" content="William Petry">
+  <meta name="description" content="Quantitative Ecologist">
+
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="/wpetry.github.io/css/highlight.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.0/css/academicons.min.css" integrity="sha512-GGGNUPDhnG8LEAEDsjqYIQns+Gu8RBs4j5XGlxl7UfRaZBhCCm5jenJkeJL8uPuOXGqgl8/H1gjlWQDRjd3cUQ==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather%7CRoboto+Mono">
+  <link rel="stylesheet" href="/wpetry.github.io/css/hugo-academic.css">
+  
+
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-57042995-1', 'auto');
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+
+  <link rel="alternate" href="wpetry.github.io/index.xml" type="application/rss+xml" title="Ecodemography">
+  <link rel="feed" href="wpetry.github.io/index.xml" type="application/rss+xml" title="Ecodemography">
+
+  <link rel="icon" type="image/png" href="/wpetry.github.io/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/wpetry.github.io/img/apple-touch-icon.png">
+
+  <link rel="canonical" href="wpetry.github.io/post/truesizeof/">
+
+  
+
+  <title>The T[R]ue Size Of... | Ecodemography</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/wpetry.github.io/">Ecodemography</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/wpetry.github.io/#about">
+            
+            <span>Home</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/wpetry.github.io/#projects">
+            
+            <span>Research</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/wpetry.github.io/#publications_selected">
+            
+            <span>Publications</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/wpetry.github.io/#posts">
+            
+            <span>R scribbles</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/wpetry.github.io/#contact">
+            
+            <span>Contact</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">The T[R]ue Size Of...</h1>
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    <time datetime="2017-07-21 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      21 July 2017
+    </time>
+  </span>
+
+  
+
+  
+
+  
+  
+
+  
+
+</div>
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<h1 id="1-objective">1. Objective</h1>
+
+<p><img src="/img/Overlay.jpeg" alt="" /></p>
+
+<p>My current field work is split between the western United States and Switzerland, areas where political boundaries are drawn on vastly different scales. This makes communicating scale very difficult to audiences in both places. <strong>Here I show how to overlay countries and other administrative boundaries from all over the world using R, revealing their relative sizes in a visual, visceral way.</strong></p>
+
+<p>This R tutorial was inspired by <a href="https://www.zsl.org/users/rosie-woodroffe" target="_blank">Dr. Rosie Woodroffe</a>, who very effectively deployed a similar visual strategy to communicate the enormous size of African Wild Dog home ranges in her recent seminar at the University of Zürich. The &ldquo;clever&rdquo; title was borrowed from the folks at <a href="http://thetruesize.com/" target="_blank">&ldquo;The True Size Of&hellip;&rdquo;</a> and shamelessly converted into an R pun. Be sure to check out their interactive web app that lets you drag colored outlines of US states and the countries of the world around a Google map——projections are deceiving!</p>
+
+<h1 id="2-data">2. Data</h1>
+
+<p>My goal was to compare the size of the study region for my Ph.D. research (Gunnison County, Colorado) to that of my new home (Switzerland). Thankfully there&rsquo;s an open database of administrative boundaries (<a href="http://www.gadm.org/" target="_blank">GADM</a>) and it can be accessed through the <code>raster::getData</code> function in <code>R</code>. It&rsquo;s possible to substitute in any shapefile, whether retrieved from a database or custom built.</p>
+
+<h1 id="3-code">3. Code</h1>
+
+<h3 id="3-1-prelminaries">3.1. Prelminaries</h3>
+
+<p>Load the packages containing the functions we&rsquo;ll use. If you haven&rsquo;t used these packages before, be sure to <code>install.packages</code> first.</p>
+
+<pre><code class="language-r prelim, message=F, warning=F">library(raster)       # despite the name, accesses vector representations of administrative boundaries
+library(rgeos)        # spatial tools
+library(maptools)     # more spatial tools
+library(tidyverse)    # data wrangling workhorse
+library(ggplot2)      # plotting workhorse
+library(ggmap)        # contains a useful theme_nothing for very simple maps
+</code></pre>
+
+<pre><code class="language-r versions, echo=F">suppressWarnings(data.frame(installed.packages())[, c(&quot;Package&quot;, &quot;Version&quot;)] %&gt;%
+                   filter(Package %in% c(&quot;raster&quot;, &quot;rgeos&quot;, &quot;maptools&quot;,
+                                         &quot;tidyverse&quot;, &quot;ggplot2&quot;, &quot;ggmap&quot;)))
+</code></pre>
+
+<h3 id="3-2-retrieve-spatial-data">3.2. Retrieve spatial data</h3>
+
+<p>We&rsquo;ll start by gathering the appropriate data and subsetting it where necessary. <code>getData</code> will only download full countries where the <code>level</code> argument specifies whether the boundaris are for the full country outline (<code>level = 0</code>), first subdivisions (<code>level = 1</code> like states, provinces, or cantons), or second subdivisions (<code>level = 2</code> like US counties; only available for some countries). Note that a full list of ISO-3 country codes may be called using <code>getData(&quot;ISO3&quot;)</code>. For more detail, check out the metadata at <a href="http://www.gadm.org/" target="_blank">GADM</a>.</p>
+
+<pre><code class="language-r getdata">## Gunnison County, Colorado, USA
+# download US county boundaries
+USA.2 &lt;- getData(&quot;GADM&quot;, country = &quot;USA&quot;, level = 2)
+# subset to focal county
+gunni &lt;- USA.2 %&gt;%
+  subset(., USA.2$NAME_2 == &quot;Gunnison&quot;)
+
+## Switzerland
+# download Switzerland country boundary, no subsetting necessary
+switz &lt;- getData(&quot;GADM&quot;, country = &quot;CHE&quot;, level = 0)
+</code></pre>
+
+<p>A quick plot just to make sure we specified the correct level illustrates the problem: we can&rsquo;t just plot each polygon and expect them to line up. R automatically scales each polygon to fill the plot canvas, so the latitudinal range of <code>gunni</code> is  about 1.5° whereas the latitudinal range of <code>switz</code> is closer to 5°. Moreover, they each occupy a different part of the coordinate range.</p>
+
+<pre><code class="language-r qplot, echo=F">opar &lt;- par(mfrow=c(1,2))
+plot(gunni, main = &quot;gunni&quot;, axes = T)
+plot(switz, main = &quot;switz&quot;, axes = T)
+par(opar)
+</code></pre>
+
+<h3 id="3-3-move-mountains-and-lakes-rivers-cities">3.3. Move mountains (and lakes, rivers, cities&hellip;)</h3>
+
+<p>The key function for this task is <code>elide</code> in the <code>maptools</code> package. It can be used to apply all sorts of transformations to Spatial* objects, including rotations, flips, and size scaling. We&rsquo;ll focus on the <code>shift</code> argument to simultaneously move the boundary of Switzerland west and south to hover over Gunnison County, Colorado, USA.</p>
+
+<p>The first step is to determine how far west and how far south we need to move Switzerland such that it aligns properly. One solution is to guess and check, but we don&rsquo;t have all day. Instead we can calculate the centroids of both polygons, then calculate the rise (=latitude) and run (=longitude) of an imaginary right triangle whose hypotenuse is the direct path from centroid to centroid.</p>
+
+<pre><code class="language-r centroids"># centroid of Gunnison County
+gunni.center &lt;- gCentroid(gunni)
+
+# centroid of Switzerland
+switz.center &lt;- gCentroid(switz)
+
+# calculate latitudinal and longitudinal displacement of Switzerland using the centroid
+# of Gunnison County as a reference point
+shift &lt;- coordinates(gunni.center)-coordinates(switz.center)
+</code></pre>
+
+<p>Now we can use <code>elide</code> to move the whole country of Switzerland (with free shipping!). R doesn&rsquo;t know that we&rsquo;ve accomplished such a herculean task. The polygon of Switzerland is just a polygon with no deeper meaning or expectation of where it should be relative to other places on our map. To avoid confusion (and preserve the correct position of Switzerland), we&rsquo;ll store the shifted Switzerland in a new object.</p>
+
+<pre><code class="language-r move">switz.shifted &lt;- elide(switz, shift = shift)
+</code></pre>
+
+<h3 id="3-4-make-the-map">3.4. Make the map</h3>
+
+<p>And now for the big reveal, had I not so effectively spoiled it with the image at the top of this page. We&rsquo;ll convert the polygons into ggplot2-friendly data frames, then build up our map layer by layer.</p>
+
+<pre><code class="language-r map1, message=F"># &quot;fortify&quot; polygons into plottable data frames
+gunni.fort &lt;- fortify(gunni)
+switz.shifted.fort &lt;- fortify(switz.shifted)
+
+# make map
+overlay&lt;-ggplot(data = gunni.fort, aes(y = lat, x = long, group = group, fill = NULL)) +
+  geom_polygon(fill = &quot;transparent&quot;, color = &quot;blue&quot;,
+               size = 0.5) +  # plots Gunnison County
+  geom_polygon(data = switz.shifted.fort, aes(y = lat, x = long,  # plots Switzerland
+               group = group, fill = NULL), fill = &quot;transparent&quot;, color = &quot;black&quot;,
+               size = 0.5) +
+  coord_equal() +
+  theme_nothing()
+overlay
+</code></pre>
+
+<p>Our approximation based on the centroids of each polygon got us very close, but there&rsquo;s a visually sloppy overlap along the southern boarders. Ideally, we&rsquo;d like Gunnison County (in blue) to fit nicely wihin the bounds of Switzerland (in black). From here the adjustment is manual: the east/west alignment of the centroids looks pretty good, but we need Switzerland to overshoot a little more to the south.</p>
+
+<pre><code class="language-r map2, message=F"># leave longitude shift alone, adjust latitude shift a little more south
+shift2 &lt;- coordinates(gunni.center)-coordinates(switz.center)-c(0,0.12) # in degrees!
+switz.shifted2 &lt;- elide(switz, shift = shift2)
+switz.shifted.fort2 &lt;- fortify(switz.shifted2)
+
+# update map and add some helpful labels
+overlay2&lt;-ggplot(data = gunni.fort, aes(y = lat, x = long, group = group, fill = NULL)) +
+  geom_polygon(fill = &quot;transparent&quot;, color = &quot;blue&quot;,
+               size = 0.5) +  # plots Gunnison County
+  geom_polygon(data = switz.shifted.fort2, aes(y = lat, x = long, group = group,
+               fill = NULL),
+               fill = &quot;transparent&quot;, color = &quot;black&quot;, size = 0.5) +  # plots Switzerland
+  coord_equal() +
+  annotate(&quot;text&quot;, x = -106.955, y = 38.66481, label = &quot;Gunnison County\nColorado, USA&quot;,
+           size = 4, fontface = &quot;bold&quot;, color = &quot;blue&quot;) +
+  annotate(&quot;text&quot;, x = -107.955, y = 38.66481, label = &quot;Switzerland&quot;, size = 4,
+           fontface = &quot;bold&quot;, color = &quot;black&quot;) +
+  theme_nothing()
+overlay2
+</code></pre>
+
+<p>All that remains is to save the image in your desired file format. Dr. Woodroffe produced a nice effect by first showing a homerange polygon she made for a pack of African Wild Dogs that she&rsquo;s been studying. The background was made transparent, so that the images of Wild Dogs in the background still shown through. Then she added the outline of Switzerland (also with a transparent background) to call emphasis to her point: a pack of Wild Dogs needs an area the size of several Swiss cantons to survive. Note that this is only possible with image formats that allow transparency (e.g. .png, .svg, .pdf).</p>
+
+<h1 id="4-extensions">4. Extensions</h1>
+
+<p>A much richer map would show the locations of my <a href="http://datadryad.org/resource/doi:10.5061/dryad.1cf8p/5" target="_blank">study sites</a> within Gunnison County, giving a better sense of where I actually worked. Perhaps a shaded relief might be nice to help convey the topographic complexity of Gunnison County. Carefully layering these data with <code>ggplot</code> makes this all possible, but these are best saved for another tutorial.</p>
+
+<p><img src="/img/Overlay2.jpeg" alt="" /></p>
+
+<p>Now if only it were so easy to <code>elide</code> a burrito from <a href="http://www.teocallitamale.com/" target="_blank">Teocalli Tamale</a> over here to Switzerland&hellip;</p>
+
+    </div>
+  </div>
+
+</article>
+
+<div class="container">
+  <nav>
+  <ul class="pager">
+    
+    <li class="previous"><a href="wpetry.github.io/post/tempdemog/"><span
+      aria-hidden="true">&larr;</span> Climate effects on structured populations</a></li>
+    
+
+    
+  </ul>
+</nav>
+
+</div>
+
+<div class="article-container">
+  
+
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017 William Petry &middot; 
+
+      Powered (mostly) by <a href="https://themes.gohugo.io/academic/" target="_blank">Academic</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.2/imagesloaded.pkgd.min.js" integrity="sha512-iHzEu7GbSc705hE2skyH6/AlTpOfBmkx7nUqTLGzPYR+C1tRaItbRlJ7hT/D3YQ9SV0fqLKzp4XY9wKulTBGTw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js" integrity="sha512-Z5heTz36xTemt1TbtbfXtTq5lMfYnOkXM2/eWcTTiLU01+Sw4ku1i7vScDc8fWhrP2abz9GQzgKH5NGBLoYlAw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/plugins/ScrollToPlugin.min.js" integrity="sha512-CDeU7pRtkPX6XJtF/gcFWlEwyaX7mcAp5sO3VIu/ylsdR74wEw4wmBpD5yYTrmMAiAboi9thyBUr1vXRPA7t0Q==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    
+    <script src="/wpetry.github.io/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+
+  </body>
+</html>
+

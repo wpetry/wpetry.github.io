@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Populations on Ecodemography</title>
+    <link>wpetry.github.io/tags/populations/</link>
+    <description>Recent content in Populations on Ecodemography</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017 William Petry</copyright>
+    <lastBuildDate>Fri, 01 Jan 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="wpetry.github.io/tags/populations/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Two-sex population dynamics</title>
+      <link>wpetry.github.io/project/sexratio/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>wpetry.github.io/project/sexratio/</guid>
+      <description>&lt;p&gt;The rarity of one sex can have profound ecological and evolutionary impacts on populations – ranging from mate limitation, loss of genetic diversity, and altered regimes of sexual selection. These population changes may also affect other species by altering species interactions. Despite widespread evidence of skewed sex ratios across the tree of life, we rarely understand their causes and consequences.&lt;/p&gt;
+
+&lt;p&gt;Populations of the long-lived montane herb &lt;em&gt;Valeriana edulis&lt;/em&gt; (Caprifoliaceae) are increasingly female-biased across its 2000 m elevation range.  Moreover, local climate change has altered the balance of the sexes in parallel.  Emerging techniques in two-sex demographic models offer a unique opportunity to not only understand the demographic causes underlying driving sex ratio skews in response to climate but also the consequences of skewed sex ratios for population persistence.&lt;/p&gt;
+
+&lt;p&gt;This project takes me to the &lt;a href=&#34;http://www.rmbl.org/&#34; target=&#34;_blank&#34;&gt;Rocky Mountain Biological Laboratory&lt;/a&gt; where I measure sex- and size-specific demographic rates on ca. 2000 tagged individual plants with the help of citizen scientists.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Collaborators:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Judy Soule&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.owlnet.rice.edu/~tm9/&#34; target=&#34;_blank&#34;&gt;Tom E.X. Miller&lt;/a&gt;, Rice University&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://tritrophic.org/&#34; target=&#34;_blank&#34;&gt;Kailen Mooney&lt;/a&gt;, University of California, Irvine&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Globally-distributed ecology</title>
+      <link>wpetry.github.io/project/distecology/</link>
+      <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>wpetry.github.io/project/distecology/</guid>
+      <description>
+
+&lt;p&gt;[&lt;em&gt;Dummy caterpillar at Zackenberg, Greenland (photo: Tomas Roslin)&lt;/em&gt;]&lt;/p&gt;
+
+&lt;p&gt;Process-level ecological data is usually collected locally, making scaling to the landscape and global scale a dubious exercise.  I&amp;rsquo;m collborating with two projects that seek to remedy this deficiency by using global distributed experiments.&lt;/p&gt;
+
+&lt;h2 id=&#34;geographic-gradients-in-species-interactions&#34;&gt;Geographic gradients in species interactions&lt;/h2&gt;
+
+&lt;p&gt;Species diversity generally increases towards the Equator, and the extent to which this affects species interactions will have profound biogeographic and evolutionary consequences. Despite decades of local experimentation and extrapolation, we still lack a globally-coherent picture of interaction strength.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&#34;http://www.helsinki.fi/foodwebs/dummycaterpillars/&#34; target=&#34;_blank&#34;&gt;Global Dummy Caterpillar Project&lt;/a&gt; deployed plasticine caterpillar mimics around the world to measure predation rates by multiple taxa, distinguished by mouth marks left in the plasticine. We found strong evidence of higher predation in the tropics with a parallel pattern over elevation with stronger predation in the lowlands.&lt;/p&gt;
+
+&lt;p&gt;Collaborators:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Global Dummy Caterpillar Project Network&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.collnell.com/&#34; target=&#34;_blank&#34;&gt;Colleen Nell&lt;/a&gt;, University of California, Irvine&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.helsinki.fi/en/researchgroups/spatial-food-web-ecology&#34; target=&#34;_blank&#34;&gt;Tomas Roslin&lt;/a&gt;, Swedish University of Agricultural Sciences&lt;br /&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;plantpopnet-scaling-up-demography&#34;&gt;PlantPopNet: Scaling up demography&lt;/h2&gt;
+
+&lt;p&gt;Demographic models provide powerful insight into the life history processes that control individual fitness, population growth, and extinction risk. Demographic studies to-date are too poorly replicated in space and time to tease apart the complex ways that demographic processes respond to environmental variation—-this is a key blindspot in our understanding of fundamental population processes made more glaring in light of global change, elevated extinctions, and species invasions.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://plantago.plantpopnet.com/&#34; target=&#34;_blank&#34;&gt;PlantPopNet&lt;/a&gt; is focusing on collecting demographic vital rates for a cosmopolitan plant, &lt;em&gt;Plantago lanceolata&lt;/em&gt;, all over the world. By comparing individual performance across environments, we are beginning to understand how different life history processes respond to the environment and scale up to impact population dynamics.&lt;/p&gt;
+
+&lt;p&gt;I have established five replicate monitoring populations across a broad environmental gradient in California, from the mediterranean south to the mesic redwood forests of the north. These data will be pooled with ca. 25 other sites in the network to form the largest demographic database for any single species.&lt;/p&gt;
+
+&lt;p&gt;Collaborators:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PlantPopNet&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://faculty.sites.uci.edu/huxman/lab/&#34; target=&#34;_blank&#34;&gt;Greg Vose&lt;/a&gt;, University of California, Irvine&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://faculty.sites.uci.edu/huxman/lab/&#34; target=&#34;_blank&#34;&gt;Emily Griffoul&lt;/a&gt;, University of California, Irvine&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

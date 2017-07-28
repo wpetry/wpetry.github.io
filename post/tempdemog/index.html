@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.25.1" />
+  <meta name="author" content="William Petry">
+  <meta name="description" content="Quantitative Ecologist">
+
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="/wpetry.github.io/css/highlight.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.0/css/academicons.min.css" integrity="sha512-GGGNUPDhnG8LEAEDsjqYIQns+Gu8RBs4j5XGlxl7UfRaZBhCCm5jenJkeJL8uPuOXGqgl8/H1gjlWQDRjd3cUQ==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather%7CRoboto+Mono">
+  <link rel="stylesheet" href="/wpetry.github.io/css/hugo-academic.css">
+  
+
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-57042995-1', 'auto');
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+
+  <link rel="alternate" href="wpetry.github.io/index.xml" type="application/rss+xml" title="Ecodemography">
+  <link rel="feed" href="wpetry.github.io/index.xml" type="application/rss+xml" title="Ecodemography">
+
+  <link rel="icon" type="image/png" href="/wpetry.github.io/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/wpetry.github.io/img/apple-touch-icon.png">
+
+  <link rel="canonical" href="wpetry.github.io/post/tempdemog/">
+
+  
+
+  <title>Climate effects on structured populations | Ecodemography</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/wpetry.github.io/">Ecodemography</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/wpetry.github.io/#about">
+            
+            <span>Home</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/wpetry.github.io/#projects">
+            
+            <span>Research</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/wpetry.github.io/#publications_selected">
+            
+            <span>Publications</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/wpetry.github.io/#posts">
+            
+            <span>R scribbles</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/wpetry.github.io/#contact">
+            
+            <span>Contact</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">Climate effects on structured populations</h1>
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    <time datetime="2017-05-02 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+       2 May 2017
+    </time>
+  </span>
+
+  
+
+  
+
+  
+  
+
+  
+
+</div>
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<p><img src="/img/temp_shinyapp.png" alt="" /></p>
+
+<p><em>[Start playing with <a href="https://ecodynamics.shinyapps.io/temperature/" target="_blank">the R Shiny app</a> or download the source files from my <a href="https://github.com/wpetry/ETHZQuantMethods/tree/master/Temperature" target="_blank">GitHub</a> to run it locally in RStudio]</em></p>
+
+<p>This interactive model—developed with <a href="http://johnsonecology.weebly.com/" target="_blank">Chris Johnson</a>—projects the population dynamics a simple organism that has two temperature-sensitive life stages, a juvenile and an adult. We might choose such a model for organisms like frogs (tadpoles/adults), insects (larvae/adults), or other poikilothermic ectotherm. The model assumes that each stage has an optimal temperature for its various life history functions. Adult reproduction rates are highest at 20°C, dropping sharply and symmetrically at lower or higher temperatures. Development is slow at low temperatures, peaks around 21-22°C, and drops to zero around 30°C. Finally, mortality for both stages increases with increasing temperature, but does so more rapidly for adults.</p>
+
+<p>The model takes the form of a system of differential equations, shown in the &ldquo;Model description&rdquo; tab. Users have the opportunity to move a temperature slider to explore how the densities of juveniles and adults are projected to change as a function of temperature. The key insights are that:</p>
+
+<ul>
+<li><p>life history trade-offs mean that optimizing one demographic rate inevitably moves other rates off their optima</p></li>
+
+<li><p>juveniles and adults have different &ldquo;values&rdquo; for total population density</p></li>
+
+<li><p>the equilibrium stage structure is highly sensitive to temperature</p></li>
+
+<li><p>populations can crash well within the physiological temperature limits of individuals</p></li>
+</ul>
+
+<h3 id="recommended-reading">Recommended reading:</h3>
+
+<p>Johnson, C. A., Coutinho, R. M., Berlin, E., Dolphin, K. E., Heyer, J., Kim, B., Leung, A., Sabellon, J. L. and Amarasekare, P. (2016), Effects of temperature and resource variation on insect population dynamics: the bordered plant bug as a case study. Functional Ecology 30:1122–1131. doi: 10.<sup>1111</sup>&frasl;<sub>1365</sub>-2435.12583 <a href="http://dx.doi.org/10.1111/1365-2435.12583" target="_blank">link</a></p>
+
+    </div>
+  </div>
+
+</article>
+
+<div class="container">
+  <nav>
+  <ul class="pager">
+    
+    <li class="previous"><a href="wpetry.github.io/post/demogdarkcorners/"><span
+      aria-hidden="true">&larr;</span> Illuminating the world&#39;s demographic dark corners</a></li>
+    
+
+    
+    <li class="next"><a href="wpetry.github.io/post/truesizeof/">The T[R]ue Size Of... <span
+      aria-hidden="true">&rarr;</span></a></li>
+    
+  </ul>
+</nav>
+
+</div>
+
+<div class="article-container">
+  
+
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017 William Petry &middot; 
+
+      Powered (mostly) by <a href="https://themes.gohugo.io/academic/" target="_blank">Academic</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.2/imagesloaded.pkgd.min.js" integrity="sha512-iHzEu7GbSc705hE2skyH6/AlTpOfBmkx7nUqTLGzPYR+C1tRaItbRlJ7hT/D3YQ9SV0fqLKzp4XY9wKulTBGTw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js" integrity="sha512-Z5heTz36xTemt1TbtbfXtTq5lMfYnOkXM2/eWcTTiLU01+Sw4ku1i7vScDc8fWhrP2abz9GQzgKH5NGBLoYlAw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/plugins/ScrollToPlugin.min.js" integrity="sha512-CDeU7pRtkPX6XJtF/gcFWlEwyaX7mcAp5sO3VIu/ylsdR74wEw4wmBpD5yYTrmMAiAboi9thyBUr1vXRPA7t0Q==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    
+    <script src="/wpetry.github.io/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+
+  </body>
+</html>
+

@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ecodemography on Ecodemography</title>
+    <link>wpetry.github.io/</link>
+    <description>Recent content in Ecodemography on Ecodemography</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017 William Petry</copyright>
+    <lastBuildDate>Wed, 20 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="wpetry.github.io/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>The T[R]ue Size Of...</title>
+      <link>wpetry.github.io/post/truesizeof/</link>
+      <pubDate>Fri, 21 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>wpetry.github.io/post/truesizeof/</guid>
+      <description>
+
+&lt;h1 id=&#34;1-objective&#34;&gt;1. Objective&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&#34;wpetry.github.io/img/Overlay.jpeg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;My current field work is split between the western United States and Switzerland, areas where political boundaries are drawn on vastly different scales. This makes communicating scale very difficult to audiences in both places. &lt;strong&gt;Here I show how to overlay countries and other administrative boundaries from all over the world using R, revealing their relative sizes in a visual, visceral way.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This R tutorial was inspired by &lt;a href=&#34;https://www.zsl.org/users/rosie-woodroffe&#34; target=&#34;_blank&#34;&gt;Dr. Rosie Woodroffe&lt;/a&gt;, who very effectively deployed a similar visual strategy to communicate the enormous size of African Wild Dog home ranges in her recent seminar at the University of Zürich. The &amp;ldquo;clever&amp;rdquo; title was borrowed from the folks at &lt;a href=&#34;http://thetruesize.com/&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;The True Size Of&amp;hellip;&amp;rdquo;&lt;/a&gt; and shamelessly converted into an R pun. Be sure to check out their interactive web app that lets you drag colored outlines of US states and the countries of the world around a Google map——projections are deceiving!&lt;/p&gt;
+
+&lt;h1 id=&#34;2-data&#34;&gt;2. Data&lt;/h1&gt;
+
+&lt;p&gt;My goal was to compare the size of the study region for my Ph.D. research (Gunnison County, Colorado) to that of my new home (Switzerland). Thankfully there&amp;rsquo;s an open database of administrative boundaries (&lt;a href=&#34;http://www.gadm.org/&#34; target=&#34;_blank&#34;&gt;GADM&lt;/a&gt;) and it can be accessed through the &lt;code&gt;raster::getData&lt;/code&gt; function in &lt;code&gt;R&lt;/code&gt;. It&amp;rsquo;s possible to substitute in any shapefile, whether retrieved from a database or custom built.&lt;/p&gt;
+
+&lt;h1 id=&#34;3-code&#34;&gt;3. Code&lt;/h1&gt;
+
+&lt;h3 id=&#34;3-1-prelminaries&#34;&gt;3.1. Prelminaries&lt;/h3&gt;
+
+&lt;p&gt;Load the packages containing the functions we&amp;rsquo;ll use. If you haven&amp;rsquo;t used these packages before, be sure to &lt;code&gt;install.packages&lt;/code&gt; first.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r prelim, message=F, warning=F&#34;&gt;library(raster)       # despite the name, accesses vector representations of administrative boundaries
+library(rgeos)        # spatial tools
+library(maptools)     # more spatial tools
+library(tidyverse)    # data wrangling workhorse
+library(ggplot2)      # plotting workhorse
+library(ggmap)        # contains a useful theme_nothing for very simple maps
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r versions, echo=F&#34;&gt;suppressWarnings(data.frame(installed.packages())[, c(&amp;quot;Package&amp;quot;, &amp;quot;Version&amp;quot;)] %&amp;gt;%
+                   filter(Package %in% c(&amp;quot;raster&amp;quot;, &amp;quot;rgeos&amp;quot;, &amp;quot;maptools&amp;quot;,
+                                         &amp;quot;tidyverse&amp;quot;, &amp;quot;ggplot2&amp;quot;, &amp;quot;ggmap&amp;quot;)))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;3-2-retrieve-spatial-data&#34;&gt;3.2. Retrieve spatial data&lt;/h3&gt;
+
+&lt;p&gt;We&amp;rsquo;ll start by gathering the appropriate data and subsetting it where necessary. &lt;code&gt;getData&lt;/code&gt; will only download full countries where the &lt;code&gt;level&lt;/code&gt; argument specifies whether the boundaris are for the full country outline (&lt;code&gt;level = 0&lt;/code&gt;), first subdivisions (&lt;code&gt;level = 1&lt;/code&gt; like states, provinces, or cantons), or second subdivisions (&lt;code&gt;level = 2&lt;/code&gt; like US counties; only available for some countries). Note that a full list of ISO-3 country codes may be called using &lt;code&gt;getData(&amp;quot;ISO3&amp;quot;)&lt;/code&gt;. For more detail, check out the metadata at &lt;a href=&#34;http://www.gadm.org/&#34; target=&#34;_blank&#34;&gt;GADM&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r getdata&#34;&gt;## Gunnison County, Colorado, USA
+# download US county boundaries
+USA.2 &amp;lt;- getData(&amp;quot;GADM&amp;quot;, country = &amp;quot;USA&amp;quot;, level = 2)
+# subset to focal county
+gunni &amp;lt;- USA.2 %&amp;gt;%
+  subset(., USA.2$NAME_2 == &amp;quot;Gunnison&amp;quot;)
+
+## Switzerland
+# download Switzerland country boundary, no subsetting necessary
+switz &amp;lt;- getData(&amp;quot;GADM&amp;quot;, country = &amp;quot;CHE&amp;quot;, level = 0)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A quick plot just to make sure we specified the correct level illustrates the problem: we can&amp;rsquo;t just plot each polygon and expect them to line up. R automatically scales each polygon to fill the plot canvas, so the latitudinal range of &lt;code&gt;gunni&lt;/code&gt; is  about 1.5° whereas the latitudinal range of &lt;code&gt;switz&lt;/code&gt; is closer to 5°. Moreover, they each occupy a different part of the coordinate range.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r qplot, echo=F&#34;&gt;opar &amp;lt;- par(mfrow=c(1,2))
+plot(gunni, main = &amp;quot;gunni&amp;quot;, axes = T)
+plot(switz, main = &amp;quot;switz&amp;quot;, axes = T)
+par(opar)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;3-3-move-mountains-and-lakes-rivers-cities&#34;&gt;3.3. Move mountains (and lakes, rivers, cities&amp;hellip;)&lt;/h3&gt;
+
+&lt;p&gt;The key function for this task is &lt;code&gt;elide&lt;/code&gt; in the &lt;code&gt;maptools&lt;/code&gt; package. It can be used to apply all sorts of transformations to Spatial* objects, including rotations, flips, and size scaling. We&amp;rsquo;ll focus on the &lt;code&gt;shift&lt;/code&gt; argument to simultaneously move the boundary of Switzerland west and south to hover over Gunnison County, Colorado, USA.&lt;/p&gt;
+
+&lt;p&gt;The first step is to determine how far west and how far south we need to move Switzerland such that it aligns properly. One solution is to guess and check, but we don&amp;rsquo;t have all day. Instead we can calculate the centroids of both polygons, then calculate the rise (=latitude) and run (=longitude) of an imaginary right triangle whose hypotenuse is the direct path from centroid to centroid.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r centroids&#34;&gt;# centroid of Gunnison County
+gunni.center &amp;lt;- gCentroid(gunni)
+
+# centroid of Switzerland
+switz.center &amp;lt;- gCentroid(switz)
+
+# calculate latitudinal and longitudinal displacement of Switzerland using the centroid
+# of Gunnison County as a reference point
+shift &amp;lt;- coordinates(gunni.center)-coordinates(switz.center)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we can use &lt;code&gt;elide&lt;/code&gt; to move the whole country of Switzerland (with free shipping!). R doesn&amp;rsquo;t know that we&amp;rsquo;ve accomplished such a herculean task. The polygon of Switzerland is just a polygon with no deeper meaning or expectation of where it should be relative to other places on our map. To avoid confusion (and preserve the correct position of Switzerland), we&amp;rsquo;ll store the shifted Switzerland in a new object.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r move&#34;&gt;switz.shifted &amp;lt;- elide(switz, shift = shift)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;3-4-make-the-map&#34;&gt;3.4. Make the map&lt;/h3&gt;
+
+&lt;p&gt;And now for the big reveal, had I not so effectively spoiled it with the image at the top of this page. We&amp;rsquo;ll convert the polygons into ggplot2-friendly data frames, then build up our map layer by layer.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r map1, message=F&#34;&gt;# &amp;quot;fortify&amp;quot; polygons into plottable data frames
+gunni.fort &amp;lt;- fortify(gunni)
+switz.shifted.fort &amp;lt;- fortify(switz.shifted)
+
+# make map
+overlay&amp;lt;-ggplot(data = gunni.fort, aes(y = lat, x = long, group = group, fill = NULL)) +
+  geom_polygon(fill = &amp;quot;transparent&amp;quot;, color = &amp;quot;blue&amp;quot;,
+               size = 0.5) +  # plots Gunnison County
+  geom_polygon(data = switz.shifted.fort, aes(y = lat, x = long,  # plots Switzerland
+               group = group, fill = NULL), fill = &amp;quot;transparent&amp;quot;, color = &amp;quot;black&amp;quot;,
+               size = 0.5) +
+  coord_equal() +
+  theme_nothing()
+overlay
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Our approximation based on the centroids of each polygon got us very close, but there&amp;rsquo;s a visually sloppy overlap along the southern boarders. Ideally, we&amp;rsquo;d like Gunnison County (in blue) to fit nicely wihin the bounds of Switzerland (in black). From here the adjustment is manual: the east/west alignment of the centroids looks pretty good, but we need Switzerland to overshoot a little more to the south.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r map2, message=F&#34;&gt;# leave longitude shift alone, adjust latitude shift a little more south
+shift2 &amp;lt;- coordinates(gunni.center)-coordinates(switz.center)-c(0,0.12) # in degrees!
+switz.shifted2 &amp;lt;- elide(switz, shift = shift2)
+switz.shifted.fort2 &amp;lt;- fortify(switz.shifted2)
+
+# update map and add some helpful labels
+overlay2&amp;lt;-ggplot(data = gunni.fort, aes(y = lat, x = long, group = group, fill = NULL)) +
+  geom_polygon(fill = &amp;quot;transparent&amp;quot;, color = &amp;quot;blue&amp;quot;,
+               size = 0.5) +  # plots Gunnison County
+  geom_polygon(data = switz.shifted.fort2, aes(y = lat, x = long, group = group,
+               fill = NULL),
+               fill = &amp;quot;transparent&amp;quot;, color = &amp;quot;black&amp;quot;, size = 0.5) +  # plots Switzerland
+  coord_equal() +
+  annotate(&amp;quot;text&amp;quot;, x = -106.955, y = 38.66481, label = &amp;quot;Gunnison County\nColorado, USA&amp;quot;,
+           size = 4, fontface = &amp;quot;bold&amp;quot;, color = &amp;quot;blue&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -107.955, y = 38.66481, label = &amp;quot;Switzerland&amp;quot;, size = 4,
+           fontface = &amp;quot;bold&amp;quot;, color = &amp;quot;black&amp;quot;) +
+  theme_nothing()
+overlay2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All that remains is to save the image in your desired file format. Dr. Woodroffe produced a nice effect by first showing a homerange polygon she made for a pack of African Wild Dogs that she&amp;rsquo;s been studying. The background was made transparent, so that the images of Wild Dogs in the background still shown through. Then she added the outline of Switzerland (also with a transparent background) to call emphasis to her point: a pack of Wild Dogs needs an area the size of several Swiss cantons to survive. Note that this is only possible with image formats that allow transparency (e.g. .png, .svg, .pdf).&lt;/p&gt;
+
+&lt;h1 id=&#34;4-extensions&#34;&gt;4. Extensions&lt;/h1&gt;
+
+&lt;p&gt;A much richer map would show the locations of my &lt;a href=&#34;http://datadryad.org/resource/doi:10.5061/dryad.1cf8p/5&#34; target=&#34;_blank&#34;&gt;study sites&lt;/a&gt; within Gunnison County, giving a better sense of where I actually worked. Perhaps a shaded relief might be nice to help convey the topographic complexity of Gunnison County. Carefully layering these data with &lt;code&gt;ggplot&lt;/code&gt; makes this all possible, but these are best saved for another tutorial.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;wpetry.github.io/img/Overlay2.jpeg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now if only it were so easy to &lt;code&gt;elide&lt;/code&gt; a burrito from &lt;a href=&#34;http://www.teocallitamale.com/&#34; target=&#34;_blank&#34;&gt;Teocalli Tamale&lt;/a&gt; over here to Switzerland&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Higher predation risk for insect prey at low latitudes and elevations</title>
+      <link>wpetry.github.io/publication/science_2017/</link>
+      <pubDate>Fri, 19 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>wpetry.github.io/publication/science_2017/</guid>
+      <description>&lt;p&gt;The &lt;a href=&#34;http://www.helsinki.fi/foodwebs/dummycaterpillars/&#34; target=&#34;_blank&#34;&gt;Global Dummy Caterpillar Project&lt;/a&gt; is:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.helsinki.fi/foodwebs/index.htm&#34; target=&#34;_blank&#34;&gt;Tomas Roslin&lt;/a&gt; (Project Leader), &lt;a href=&#34;http://www.zoo.ox.ac.uk/people/view/slade_e.htm&#34; target=&#34;_blank&#34;&gt;Eleanor Slade&lt;/a&gt; (Project Leader), &lt;a href=&#34;http://baloun.entu.cas.cz/png/cv-novotny-vojtech.html&#34; target=&#34;_blank&#34;&gt;Vojtech Novotny&lt;/a&gt; (Project Leader), &lt;a href=&#34;https://tuhat.helsinki.fi/portal/en/persons/bess-hardwick(deb2f83f-c8f6-4ddc-9a23-a2531f416fb5).html&#34; target=&#34;_blank&#34;&gt;Bess Hardwick&lt;/a&gt; (Project Coordinator)&lt;/p&gt;
+
+&lt;p&gt;Data contributors:&lt;br /&gt;
+ &lt;a href=&#34;http://ashleyasmus.weebly.com/&#34; target=&#34;_blank&#34;&gt;Ashley Asmus&lt;/a&gt;, &lt;a href=&#34;http://starfsfolk.hi.is/en/simaskra/48081&#34; target=&#34;_blank&#34;&gt;Isabel C. Barrio&lt;/a&gt;, &lt;a href=&#34;http://stri.si.edu/sites/basset/&#34; target=&#34;_blank&#34;&gt;Yves Basset&lt;/a&gt;, Andrea Larissa Boesing, &lt;a href=&#34;http://web.hku.hk/~tbone/&#34; target=&#34;_blank&#34;&gt;Timothy C. Bonebrake&lt;/a&gt;, &lt;a href=&#34;https://tuhat.helsinki.fi/portal/en/persons/erin-cameron(6fbf33e9-5688-4749-8e05-b552a1d0518a).html&#34; target=&#34;_blank&#34;&gt;Erin K. Cameron&lt;/a&gt;, &lt;a href=&#34;http://www.wesleydattilo.org/&#34; target=&#34;_blank&#34;&gt;Wesley Dáttilo&lt;/a&gt;, &lt;a href=&#34;http://theantsofecuador.com/david/&#34; target=&#34;_blank&#34;&gt;David A. Donoso&lt;/a&gt;, &lt;a href=&#34;http://www1.osu.cz/home/Drozd/&#34; target=&#34;_blank&#34;&gt;Pavel Drozd&lt;/a&gt;, &lt;a href=&#34;https://claudialouisegray.com/&#34; target=&#34;_blank&#34;&gt;Claudia L. Gray&lt;/a&gt;, David S. Hik, &lt;a href=&#34;https://insectecology.une.edu.au/sarah.html&#34; target=&#34;_blank&#34;&gt;Sarah J. Hill&lt;/a&gt;, &lt;a href=&#34;http://users.utu.fi/taesho/&#34; target=&#34;_blank&#34;&gt;Tapani Hopkins&lt;/a&gt;, Shuyin Huang, Bonny Koane, Benita Laird-Hopkins, Liisa Laukkanen, Owen T. Lewis, &lt;a href=&#34;https://roadsinthesepotholes.wordpress.com/&#34; target=&#34;_blank&#34;&gt;Sol Milne&lt;/a&gt;, Isaiah Mwesige, Akihiro Nakamura, &lt;a href=&#34;http://www.collnell.com/&#34; target=&#34;_blank&#34;&gt;Colleen S. Nell&lt;/a&gt;, Elizabeth Nichols, &lt;a href=&#34;http://wpetry.github.io/&#34; target=&#34;_blank&#34;&gt;William K. Petry&lt;/a&gt;, Alena Prokurat, &lt;a href=&#34;http://tvardikova.weebly.com/&#34; target=&#34;_blank&#34;&gt;Katerina Sam&lt;/a&gt;, Niels M. Schmidt, Alison Slade, Victor Slade, Alžběta Suchanková, &lt;a href=&#34;http://kodu.ut.ee/~tiited/english/&#34; target=&#34;_blank&#34;&gt;Tiit Teder&lt;/a&gt;, &lt;a href=&#34;http://www.eeb.cornell.edu/sdv2/www/&#34; target=&#34;_blank&#34;&gt;Saskya van Nouhuys&lt;/a&gt;, &lt;a href=&#34;http://www.uib.no/en/persons/Vigdis.Vandvik&#34; target=&#34;_blank&#34;&gt;Vigdis Vandvik&lt;/a&gt;, &lt;a href=&#34;https://www.bayceer.uni-bayreuth.de/pfloek/en/mitarbeiter/mit/mitarbeiter_detail.php?id_obj=135003&#34; target=&#34;_blank&#34;&gt;Anita Weissflog&lt;/a&gt;, &amp;amp; Vital Zhukovich&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Climate effects on structured populations</title>
+      <link>wpetry.github.io/post/tempdemog/</link>
+      <pubDate>Tue, 02 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>wpetry.github.io/post/tempdemog/</guid>
+      <description>
+
+&lt;p&gt;&lt;img src=&#34;wpetry.github.io/img/temp_shinyapp.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;[Start playing with &lt;a href=&#34;https://ecodynamics.shinyapps.io/temperature/&#34; target=&#34;_blank&#34;&gt;the R Shiny app&lt;/a&gt; or download the source files from my &lt;a href=&#34;https://github.com/wpetry/ETHZQuantMethods/tree/master/Temperature&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt; to run it locally in RStudio]&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;This interactive model—developed with &lt;a href=&#34;http://johnsonecology.weebly.com/&#34; target=&#34;_blank&#34;&gt;Chris Johnson&lt;/a&gt;—projects the population dynamics a simple organism that has two temperature-sensitive life stages, a juvenile and an adult. We might choose such a model for organisms like frogs (tadpoles/adults), insects (larvae/adults), or other poikilothermic ectotherm. The model assumes that each stage has an optimal temperature for its various life history functions. Adult reproduction rates are highest at 20°C, dropping sharply and symmetrically at lower or higher temperatures. Development is slow at low temperatures, peaks around 21-22°C, and drops to zero around 30°C. Finally, mortality for both stages increases with increasing temperature, but does so more rapidly for adults.&lt;/p&gt;
+
+&lt;p&gt;The model takes the form of a system of differential equations, shown in the &amp;ldquo;Model description&amp;rdquo; tab. Users have the opportunity to move a temperature slider to explore how the densities of juveniles and adults are projected to change as a function of temperature. The key insights are that:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;life history trade-offs mean that optimizing one demographic rate inevitably moves other rates off their optima&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;juveniles and adults have different &amp;ldquo;values&amp;rdquo; for total population density&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;the equilibrium stage structure is highly sensitive to temperature&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;populations can crash well within the physiological temperature limits of individuals&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;recommended-reading&#34;&gt;Recommended reading:&lt;/h3&gt;
+
+&lt;p&gt;Johnson, C. A., Coutinho, R. M., Berlin, E., Dolphin, K. E., Heyer, J., Kim, B., Leung, A., Sabellon, J. L. and Amarasekare, P. (2016), Effects of temperature and resource variation on insect population dynamics: the bordered plant bug as a case study. Functional Ecology 30:1122–1131. doi: 10.&lt;sup&gt;1111&lt;/sup&gt;&amp;frasl;&lt;sub&gt;1365&lt;/sub&gt;-2435.12583 &lt;a href=&#34;http://dx.doi.org/10.1111/1365-2435.12583&#34; target=&#34;_blank&#34;&gt;link&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Illuminating the world&#39;s demographic dark corners</title>
+      <link>wpetry.github.io/post/demogdarkcorners/</link>
+      <pubDate>Fri, 28 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>wpetry.github.io/post/demogdarkcorners/</guid>
+      <description>
+
+&lt;p&gt;&lt;em&gt;[Originally posted on the &lt;a href=&#34;https://compadredb.wordpress.com/2017/04/28/illuminating-the-worlds-demographic-dark-corners/&#34; target=&#34;_blank&#34;&gt;COM(P)ADRE blog&lt;/a&gt; on 28 April 2017]&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;When I first downloaded COMPADRE mere moments after it went public, I was attending the EvoDemoS meeting at Stanford; we were less than 60 km from the nearest matrix population model in the database (&lt;em&gt;Calochortus tiburonensis&lt;/em&gt;; Fiedler 1987). My Ph.D. fieldwork brought me considerably closer, and not just because I worked with historic matrix population models collected near the field station. Instead yellow-bellied marmots (Marmota flaviventris (Ozgul et al. 2009, 2010)) scratched and gnawed under my cabin’s floorboards every day. In short, my thinking about demography has been shaped not only by very well-studied places, but also in them.&lt;/p&gt;
+
+&lt;p&gt;It will come as no surprise to most readers of this blog that certain regions of the world and branches of the tree of life are strongly represented than in biological databases, whereas other parts and taxa are almost entirely unsampled. COMPADRE and COMADRE are no exception (Salguero-Gómez et al. 2015, 2016). But we lose a lot of information by only considering the current state of our field’s geographic bias. We stand to learn much more if we could see its trajectory. By analogy, the power of matrix models stems from connecting static snapshots of a population’s state to reveal the motion of life histories and population dynamics as they unfold in time. We can use an analogous approach to animate our progress towards illuminating the dark corners of demography. I was curious what these patterns would show, so I did just that using the &amp;gt;50 years of georeferenced matrix population models contained in the latest releases of COMPADRE and COMADRE.&lt;/p&gt;
+
+&lt;p&gt;We most commonly think about spatial biases as hotspots of research activity, but what happens when we flip that question around and ask where the least studied places are? To do this, I wrote &lt;a href=&#34;https://gist.github.com/wpetry/8eb56e45e8e3fde480b2c153a154f63d&#34; target=&#34;_blank&#34;&gt;an R script&lt;/a&gt; that divides the Earth’s surface into pixels and measures the distance from each pixel to the nearest matrix population model&lt;sup&gt;&amp;ast;&lt;/sup&gt; (Fig. 1)—the brightest pixels show populations where a matrix model has been constructed. It’s then very easy to find the place that is the most isolated from the illumination of demography.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;img src=&#34;wpetry.github.io/img/comp_iso.png&#34; alt=&#34;fig1&#34; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&#34;fig-1-the-current-darkest-corners-of-demography-for-a-plant-matrix-population-models-in-the-compadre-database-and-b-animal-matrix-population-models-in-the-comadre-database-the-most-isolated-points-from-all-matrix-population-models-are-shown-as-colored-dots-blue-square-of-the-whole-earth-green-triangle-of-land-masses-yellow-circle-of-land-masses-excluding-the-largely-uninhabitable-antarctica&#34;&gt;Fig. 1. The current darkest corners of demography for (A) plant matrix population models in the COMPADRE database and (B) animal matrix population models in the COMADRE database. The most isolated points from all matrix population models are shown as colored dots (blue square: of the whole Earth, green triangle: of land masses, yellow circle: of land masses excluding the largely uninhabitable Antarctica).&lt;/h5&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;In the most recent versions of the datasets, Henderson Island and Rapa Nui (Easter Island) are the most isolated lands from a matrix model for plants and animals, respectively&lt;sup&gt;**&lt;/sup&gt;. To me, two other patterns are apparent when the data are presented this way. First, plant demographers (Fig. 1A) have better sampled the tropics than have animal demographers. Part of this may stem from the fact that many animals are almost certainly harder to mark and recapture in a dense tropical forest whereas plants are more easily re-found. The second pattern that strikes me is that animal demographers have sampled oceanic islands much more thoroughly than plant demographers. Again, this may be related to the higher mobility of animals and the desirability of a closed population (e.g., sheep wrangling on St. Kilda vs. anywhere on the mainland). However, it may also be related to the fact that many pelagic animals use remote islands as breeding locations (e.g., the Laysan albatross). Most animal matrix models are age structured, so marking animals at birth is made considerably easier if they all gather in one place to raise young.  You may have other candidate explanations for these differing spatial biases, and I’d certainly be keen to hear them.&lt;/p&gt;
+
+&lt;p&gt;By animating these maps over time, we gain a much deeper understanding of how demographers have been illuminating demographic dark corners, and we can see how bringing demographic models to new areas changes the arrangement of the darkest corners (Fig. 2).&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;img src=&#34;wpetry.github.io/img/iso_compadre.gif&#34; alt=&#34;fig2a&#34; /&gt;&lt;br /&gt;
+&lt;img src=&#34;wpetry.github.io/img/iso_comadre.gif&#34; alt=&#34;fig2b&#34; /&gt;&lt;/p&gt;
+
+&lt;h6 id=&#34;fig-2-how-the-demographic-darkest-corner-has-moved-since-the-advent-of-matrix-population-models-1965-2016-plant-matrix-models-from-compadre-above-and-animal-matrix-models-from-comadre-below-are-shown-separately-with-symbols-as-in-fig-1-the-color-gradient-rescales-each-year-to-better-highlight-the-least-known-areas&#34;&gt;Fig. 2. How the demographic darkest corner has moved since the advent of matrix population models (1965-2016). Plant matrix models from COMPADRE (above) and animal matrix models from COMADRE (below) are shown separately with symbols as in Fig. 1. The color gradient rescales each year to better highlight the least known areas.&lt;/h6&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Finally, we can condense this information into a plot of how the distance to the most isolated place has decreased over time as more demographic studies have been conducted (Fig. 3).&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;img src=&#34;wpetry.github.io/img/iso_change_time.png&#34; alt=&#34;fig3&#34; /&gt;&lt;/p&gt;
+
+&lt;h6 id=&#34;fig-3-decline-in-the-maximum-solid-line-and-median-dashed-line-distances-away-from-a-matrix-population-model-for-compadre-left-and-comadre-right-over-time-colours-show-different-subsets-where-blue-is-any-point-on-land-or-water-green-is-restricted-to-points-on-land-and-yellow-is-restricted-to-points-on-land-excluding-antarctica-note-that-the-maximum-possible-isolation-distance-on-earth-is-approximately-20-038-km&#34;&gt;Fig. 3. Decline in the maximum (solid line) and median (dashed line) distances away from a matrix population model for COMPADRE (left) and COMADRE (right) over time. Colours show different subsets where blue is any point on land or water, green is restricted to points on land, and yellow is restricted to points on land excluding Antarctica. Note that the maximum possible isolation distance on Earth is approximately 20,038 km.&lt;/h6&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Even though COMPADRE has more than twice the number of unique population locations than does COMADRE, the demographic dark places for plants have remained darker for plants than for animals since the late 1980s. Moreover, Henderson Island has remained the most isolated point from plant demography for almost 20 years! The picture is a bit more optimistic if we look at the median distance from a matrix model. In just over 50 years, we have sampled such that half of the world is &amp;lt;1500 km from a plant matrix model and is &amp;lt;1300 km from an animal matrix model.&lt;/p&gt;
+
+&lt;p&gt;It’s worth asking what, if anything, we’re missing with these geographic biases. For plants, we’re certainly under-sampling some disturbance regimes and life histories that tend to be more common on small remote islands. For example, &amp;lt;&amp;lt;1% of taxa in COMPADRE are dioecious (i.e., separate sexes) compared to ca. 5% of plant species that have this sexual system (Renner 2014). Improved sampling of oceanic islands—several of which have elevated frequencies of dioecious species (Sakai and Weller 1999)—could simultaneously reduce both the geographic and life history biases in the database. For animals, sampling is sparsest in some of the most species rich ecosystems on the plant like the Amazon, the Congo, and tropical southeast Asia. It’s hard to imagine how better sampling in these areas could fail to reveal unique and surprising insights.&lt;/p&gt;
+
+&lt;p&gt;As I now write this from my postdoc position in Zurich I’m again finding myself in a demographic bright spot. The nearest matrix population model is an hour away by train (white stork, &lt;em&gt;Ciconia ciconia&lt;/em&gt;; (Schaub et al. 2004)). Rapa Nui, on the other hand would be 34 hours by plane&lt;sup&gt;***&lt;/sup&gt;, and Henderson Island is all but impossible to reach without a private yacht. Still, we can and should work to target more accessible places that are nonetheless demographic dark spots. Moreover, we can bolster the utility of these databases by targeting clades and life history strategies that are underrepresented, but that will have to remain the subject for a future post.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&amp;ast; This is a raster-based approximation of Voronoi polygons. It’s slow and clunky, but it has the advantage of accounting for the Earth’s ellipsoid shape. I used the WGS84 ellipsoid and cells that are 1/12° (+/-9.25 km) on each side.&lt;/p&gt;
+
+&lt;p&gt;** And here I reveal my own terrestrial bias.&lt;/p&gt;
+
+&lt;p&gt;*** Assuming no connections go awry.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;literature-cited&#34;&gt;&lt;strong&gt;Literature cited&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;Fiedler, P. L. 1987. Life history and population dynamics of rare and common mariposa lilies (&lt;em&gt;Calochortus&lt;/em&gt; Pursh: Liliaceae). Journal of Ecology 75:977–995.&lt;/p&gt;
+
+&lt;p&gt;Ozgul, A., D. Z. Childs, M. K. Oli, K. B. Armitage, D. T. Blumstein, L. E. Olson, S. Tuljapurkar, and T. Coulson. 2010. Coupled dynamics of body mass and population growth in response to environmental change. Nature 466:482–485.&lt;/p&gt;
+
+&lt;p&gt;Ozgul, A., M. K. Oli, K. B. Armitage, D. T. Blumstein, and D. H. Van Vuren. 2009. Influence of local demography on asymptotic and transient dynamics of a yellow‐bellied marmot metapopulation. The American Naturalist 173:517–530.&lt;/p&gt;
+
+&lt;p&gt;Renner, S. S. 2014. The relative and absolute frequencies of angiosperm sexual systems: Dioecy, monoecy, gynodioecy, and an updated online database. American Journal of Botany.&lt;/p&gt;
+
+&lt;p&gt;Sakai, A. K., and S. G. Weller. 1999. Gender and sexual dimorphism in flowering plants: A review of terminology, biogeographic patterns, ecological correlates, and phylogenetic approaches. Pages 1–31 in M. A. Geber, T. E. Dawson, and L. F. Delph, editors. Gender and sexual dimorphism in flowering plants. Springer Berlin Heidelberg.&lt;/p&gt;
+
+&lt;p&gt;Salguero-Gómez, R., O. R. Jones, C. R. Archer, C. Bein, H. de Buhr, C. Farack, F. Gottschalk, A. Hartmann, A. Henning, G. Hoppe, G. Römer, T. Ruoff, V. Sommer, J. Wille, J. Voigt, S. Zeh, D. Vieregg, Y. M. Buckley, J. Che-Castaldo, D. Hodgson, A. Scheuerlein, H. Caswell, and J. W. Vaupel. 2016. COMADRE: a global data base of animal demography. Journal of Animal Ecology 85:371–384.&lt;/p&gt;
+
+&lt;p&gt;Salguero-Gómez, R., O. R. Jones, C. R. Archer, Y. M. Buckley, J. Che-Castaldo, H. Caswell, D. Hodgson, A. Scheuerlein, D. A. Conde, E. Brinks, H. de Buhr, C. Farack, F. Gottschalk, A. Hartmann, A. Henning, G. Hoppe, G. Römer, J. Runge, T. Ruoff, J. Wille, S. Zeh, R. Davison, D. Vieregg, A. Baudisch, R. Altwegg, F. Colchero, M. Dong, H. de Kroon, J.-D. Lebreton, C. J. E. Metcalf, M. M. Neel, I. M. Parker, T. Takada, T. Valverde, L. A. Vélez-Espino, G. M. Wardle, M. Franco, and J. W. Vaupel. 2015. The COMPADRE plant matrix database: An open online repository for plant demography. Journal of Ecology 103:202–218.&lt;/p&gt;
+
+&lt;p&gt;Schaub, M., R. Pradel, and J.-D. Lebreton. 2004. Is the reintroduced white stork (&lt;em&gt;Ciconia ciconia&lt;/em&gt;) population in Switzerland self-sustainable? Biological Conservation 119:105–114.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hello World!</title>
+      <link>wpetry.github.io/post/helloworld/</link>
+      <pubDate>Sat, 18 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>wpetry.github.io/post/helloworld/</guid>
+      <description>&lt;p&gt;In the spirit of open data, I&amp;rsquo;ve moved towards posting the raw data and code that underlie my science (see &lt;a href=&#34;http://dx.doi.org/10.5061/dryad.d6rb0&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;, &lt;a href=&#34;http://dx.doi.org/10.5061/dryad.1cf8p&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;, and &lt;a href=&#34;http://dx.doi.org/10.5061/dryad.j432q&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt; for recent examples). Occaisionally I work on small side projects that make for neat stories, but don&amp;rsquo;t always make it to a publication. Here is where I&amp;rsquo;ll post short write ups that highlight ideas and data analysis tools.&lt;/p&gt;
+
+&lt;p&gt;Hardly regular, hopefully somewhat original&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Interaction rewiring and the rapid turnover of plant–pollinator networks</title>
+      <link>wpetry.github.io/publication/ecoletts_2017/</link>
+      <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>wpetry.github.io/publication/ecoletts_2017/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sex-specific responses to climate change in plants alter population sex ratio and performance</title>
+      <link>wpetry.github.io/publication/science_2016/</link>
+      <pubDate>Wed, 01 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>wpetry.github.io/publication/science_2016/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Two-sex population dynamics</title>
+      <link>wpetry.github.io/project/sexratio/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>wpetry.github.io/project/sexratio/</guid>
+      <description>&lt;p&gt;The rarity of one sex can have profound ecological and evolutionary impacts on populations – ranging from mate limitation, loss of genetic diversity, and altered regimes of sexual selection. These population changes may also affect other species by altering species interactions. Despite widespread evidence of skewed sex ratios across the tree of life, we rarely understand their causes and consequences.&lt;/p&gt;
+
+&lt;p&gt;Populations of the long-lived montane herb &lt;em&gt;Valeriana edulis&lt;/em&gt; (Caprifoliaceae) are increasingly female-biased across its 2000 m elevation range.  Moreover, local climate change has altered the balance of the sexes in parallel.  Emerging techniques in two-sex demographic models offer a unique opportunity to not only understand the demographic causes underlying driving sex ratio skews in response to climate but also the consequences of skewed sex ratios for population persistence.&lt;/p&gt;
+
+&lt;p&gt;This project takes me to the &lt;a href=&#34;http://www.rmbl.org/&#34; target=&#34;_blank&#34;&gt;Rocky Mountain Biological Laboratory&lt;/a&gt; where I measure sex- and size-specific demographic rates on ca. 2000 tagged individual plants with the help of citizen scientists.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Collaborators:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Judy Soule&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.owlnet.rice.edu/~tm9/&#34; target=&#34;_blank&#34;&gt;Tom E.X. Miller&lt;/a&gt;, Rice University&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://tritrophic.org/&#34; target=&#34;_blank&#34;&gt;Kailen Mooney&lt;/a&gt;, University of California, Irvine&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Globally-distributed ecology</title>
+      <link>wpetry.github.io/project/distecology/</link>
+      <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>wpetry.github.io/project/distecology/</guid>
+      <description>
+
+&lt;p&gt;[&lt;em&gt;Dummy caterpillar at Zackenberg, Greenland (photo: Tomas Roslin)&lt;/em&gt;]&lt;/p&gt;
+
+&lt;p&gt;Process-level ecological data is usually collected locally, making scaling to the landscape and global scale a dubious exercise.  I&amp;rsquo;m collborating with two projects that seek to remedy this deficiency by using global distributed experiments.&lt;/p&gt;
+
+&lt;h2 id=&#34;geographic-gradients-in-species-interactions&#34;&gt;Geographic gradients in species interactions&lt;/h2&gt;
+
+&lt;p&gt;Species diversity generally increases towards the Equator, and the extent to which this affects species interactions will have profound biogeographic and evolutionary consequences. Despite decades of local experimentation and extrapolation, we still lack a globally-coherent picture of interaction strength.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&#34;http://www.helsinki.fi/foodwebs/dummycaterpillars/&#34; target=&#34;_blank&#34;&gt;Global Dummy Caterpillar Project&lt;/a&gt; deployed plasticine caterpillar mimics around the world to measure predation rates by multiple taxa, distinguished by mouth marks left in the plasticine. We found strong evidence of higher predation in the tropics with a parallel pattern over elevation with stronger predation in the lowlands.&lt;/p&gt;
+
+&lt;p&gt;Collaborators:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Global Dummy Caterpillar Project Network&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.collnell.com/&#34; target=&#34;_blank&#34;&gt;Colleen Nell&lt;/a&gt;, University of California, Irvine&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.helsinki.fi/en/researchgroups/spatial-food-web-ecology&#34; target=&#34;_blank&#34;&gt;Tomas Roslin&lt;/a&gt;, Swedish University of Agricultural Sciences&lt;br /&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;plantpopnet-scaling-up-demography&#34;&gt;PlantPopNet: Scaling up demography&lt;/h2&gt;
+
+&lt;p&gt;Demographic models provide powerful insight into the life history processes that control individual fitness, population growth, and extinction risk. Demographic studies to-date are too poorly replicated in space and time to tease apart the complex ways that demographic processes respond to environmental variation—-this is a key blindspot in our understanding of fundamental population processes made more glaring in light of global change, elevated extinctions, and species invasions.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://plantago.plantpopnet.com/&#34; target=&#34;_blank&#34;&gt;PlantPopNet&lt;/a&gt; is focusing on collecting demographic vital rates for a cosmopolitan plant, &lt;em&gt;Plantago lanceolata&lt;/em&gt;, all over the world. By comparing individual performance across environments, we are beginning to understand how different life history processes respond to the environment and scale up to impact population dynamics.&lt;/p&gt;
+
+&lt;p&gt;I have established five replicate monitoring populations across a broad environmental gradient in California, from the mediterranean south to the mesic redwood forests of the north. These data will be pooled with ca. 25 other sites in the network to form the largest demographic database for any single species.&lt;/p&gt;
+
+&lt;p&gt;Collaborators:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PlantPopNet&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://faculty.sites.uci.edu/huxman/lab/&#34; target=&#34;_blank&#34;&gt;Greg Vose&lt;/a&gt;, University of California, Irvine&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://faculty.sites.uci.edu/huxman/lab/&#34; target=&#34;_blank&#34;&gt;Emily Griffoul&lt;/a&gt;, University of California, Irvine&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Plant defence responses to volatile alert signals are population-specific</title>
+      <link>wpetry.github.io/publication/oikos_2015/</link>
+      <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>wpetry.github.io/publication/oikos_2015/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Trade‐offs between constitutive and induced defences drive geographical and climatic clines in pine chemical defences</title>
+      <link>wpetry.github.io/publication/ecoletts_2014/</link>
+      <pubDate>Thu, 01 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>wpetry.github.io/publication/ecoletts_2014/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mechanisms underlying plant sexual dimorphism in multi‐trophic arthropod communities</title>
+      <link>wpetry.github.io/publication/ecology_2013/</link>
+      <pubDate>Sun, 01 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>wpetry.github.io/publication/ecology_2013/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Plant sex and induced responses independently influence herbivore performance, natural enemies and aphid-tending ants</title>
+      <link>wpetry.github.io/publication/arthroplantint_2012/</link>
+      <pubDate>Sat, 01 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>wpetry.github.io/publication/arthroplantint_2012/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Influence of macronutrient imbalance on native ant foraging and interspecific interactions in the field</title>
+      <link>wpetry.github.io/publication/ecolentomol_2012/</link>
+      <pubDate>Fri, 25 May 2012 00:00:00 +0000</pubDate>
+      
+      <guid>wpetry.github.io/publication/ecolentomol_2012/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A quantitative comparison of two sample methods for collecting Amblyomma americanum and Dermacentor variabilis (Acari: Ixodidae) in Missouri</title>
+      <link>wpetry.github.io/publication/expapplacar_2010/</link>
+      <pubDate>Wed, 01 Dec 2010 00:00:00 +0000</pubDate>
+      
+      <guid>wpetry.github.io/publication/expapplacar_2010/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
