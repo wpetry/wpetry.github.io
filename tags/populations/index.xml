@@ -50,7 +50,7 @@
 
 &lt;p&gt;The &lt;a href=&#34;http://www.helsinki.fi/foodwebs/dummycaterpillars/&#34; target=&#34;_blank&#34;&gt;Global Dummy Caterpillar Project&lt;/a&gt; deployed plasticine caterpillar mimics around the world to measure predation rates by multiple taxa, distinguished by mouth marks left in the plasticine. We found strong evidence of higher predation in the tropics with a parallel pattern over elevation with stronger predation in the lowlands.&lt;/p&gt;
 
-&lt;p&gt;Collaborators:&lt;/p&gt;
+&lt;h4 id=&#34;collaborators&#34;&gt;Collaborators:&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Global Dummy Caterpillar Project Network&lt;br /&gt;&lt;/li&gt;
@@ -67,13 +67,25 @@
 
 &lt;p&gt;I have established five replicate monitoring populations across a broad environmental gradient in California, from the mediterranean south to the mesic redwood forests of the north. These data will be pooled with ca. 25 other sites in the network to form the largest demographic database for any single species.&lt;/p&gt;
 
-&lt;p&gt;Collaborators:&lt;/p&gt;
+&lt;h4 id=&#34;collaborators-1&#34;&gt;Collaborators:&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;PlantPopNet&lt;br /&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://faculty.sites.uci.edu/huxman/lab/&#34; target=&#34;_blank&#34;&gt;Greg Vose&lt;/a&gt;, University of California, Irvine&lt;br /&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://faculty.sites.uci.edu/huxman/lab/&#34; target=&#34;_blank&#34;&gt;Emily Griffoul&lt;/a&gt;, University of California, Irvine&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Comparative demography</title>
+      <link>http://wpetry.github.io/project/compadre/</link>
+      <pubDate>Tue, 01 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://wpetry.github.io/project/compadre/</guid>
+      <description>&lt;p&gt;In addition to building demographic models and parameterizing them with field data, I am a member of the Science Committee for the twin databases of matrix population models, COMPADRE and COMADRE. Our goal is to enable comparative demographic studies by assembling a comprehensive database of demographic models and their associated metadata, then making it publicly available along with tools to work with the data.&lt;/p&gt;
+
+&lt;p&gt;See our &lt;a href=&#34;https://compadredb.wordpress.com/&#34; target=&#34;_blank&#34;&gt;blog&lt;/a&gt; for highlights of recent papers that have resulted from this effort, or download the latest versions of each dataset &lt;a href=&#34;http://www.compadre-db.org/Data&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

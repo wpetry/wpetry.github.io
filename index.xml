@@ -302,6 +302,31 @@ overlay2
     </item>
     
     <item>
+      <title>Maintenance of biodiversity</title>
+      <link>http://wpetry.github.io/project/biodiversity/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://wpetry.github.io/project/biodiversity/</guid>
+      <description>
+
+&lt;h2 id=&#34;how-do-so-many-types-of-organisms-persist-on-a-small-number-of-shared-resources&#34;&gt;How do so many types of organisms persist on a small number of shared resources?&lt;/h2&gt;
+
+&lt;p&gt;Organisms compete with their neighbors&amp;ndash;both individuals of the same and different species–-for resources. Through recent theoretical and empirical advances, we&amp;rsquo;ve come to understand the mechanisms that maintain the incredible diversity of species that we observe in competitive communities. However, these competitor species are themselves resources for consumers, and many hypotheses for the origin of diversity depend. Modern coexistence theory has shown that consumers can be a potent force in both the maintenence and erosion of diversity, yet the empirical literature has substantially lagged these advances. Though consumers have been implicated in the origin of species diversity for more than a half-century, their role in the maintenance of diversity remains an open question.&lt;/p&gt;
+
+&lt;p&gt;The primary focus of my postdoctoral research is to understand how variation in interactions with consumers affects species diversity in competitive communities. To do this, I work with a well-studied community of competing winter annual plant species and their seed-consumers at the University of California&amp;rsquo;s &lt;a href=&#34;Sedgwick Reserve&#34; target=&#34;_blank&#34;&gt;http://sedgwick.nrs.ucsb.edu/&lt;/a&gt;. I am developing new mathematical models of plant population dynamics and collecting field data to parameterize them. By casting the dynamics of plant populations in a multi-trophic community context, I account for the effects of both direct consumer-prey interactions and indirect interactions between prey competitors through shared consumers (i.e., apparent competition and apparent facilitation). This work respresents one of the first formal empirical tests of coexistence theory in a multi-trophic context.&lt;/p&gt;
+
+&lt;h4 id=&#34;collaborators&#34;&gt;Collaborators:&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.plantecology.ethz.ch/&#34; target=&#34;_blank&#34;&gt;Jonathan Levine&lt;/a&gt;, ETH Zurich&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://sites.lifesci.ucla.edu/eeb-kraft/&#34; target=&#34;_blank&#34;&gt;Nathan Kraft&lt;/a&gt;, UCLA&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.oscargodoy.com/&#34; target=&#34;_blank&#34;&gt;Oscar Godoy&lt;/a&gt;, Instituto de Recursos Naturales y Agrobiologia de Sevilla (IRNAS-CSIC)&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gauravsk.github.io/&#34; target=&#34;_blank&#34;&gt;Gaurav Kandlikar&lt;/a&gt;, UCLA&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Sex-specific responses to climate change in plants alter population sex ratio and performance</title>
       <link>http://wpetry.github.io/publication/science_2016/</link>
       <pubDate>Wed, 01 Jun 2016 00:00:00 +0000</pubDate>
@@ -350,7 +375,7 @@ overlay2
 
 &lt;p&gt;The &lt;a href=&#34;http://www.helsinki.fi/foodwebs/dummycaterpillars/&#34; target=&#34;_blank&#34;&gt;Global Dummy Caterpillar Project&lt;/a&gt; deployed plasticine caterpillar mimics around the world to measure predation rates by multiple taxa, distinguished by mouth marks left in the plasticine. We found strong evidence of higher predation in the tropics with a parallel pattern over elevation with stronger predation in the lowlands.&lt;/p&gt;
 
-&lt;p&gt;Collaborators:&lt;/p&gt;
+&lt;h4 id=&#34;collaborators&#34;&gt;Collaborators:&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Global Dummy Caterpillar Project Network&lt;br /&gt;&lt;/li&gt;
@@ -367,7 +392,7 @@ overlay2
 
 &lt;p&gt;I have established five replicate monitoring populations across a broad environmental gradient in California, from the mediterranean south to the mesic redwood forests of the north. These data will be pooled with ca. 25 other sites in the network to form the largest demographic database for any single species.&lt;/p&gt;
 
-&lt;p&gt;Collaborators:&lt;/p&gt;
+&lt;h4 id=&#34;collaborators-1&#34;&gt;Collaborators:&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;PlantPopNet&lt;br /&gt;&lt;/li&gt;
@@ -396,6 +421,45 @@ overlay2
     </item>
     
     <item>
+      <title>Drivers of species interactions</title>
+      <link>http://wpetry.github.io/project/interactiondrivers/</link>
+      <pubDate>Wed, 01 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://wpetry.github.io/project/interactiondrivers/</guid>
+      <description>
+
+&lt;h2 id=&#34;temporal-dynamics-of-species-interaction-networks&#34;&gt;Temporal dynamics of species interaction networks&lt;/h2&gt;
+
+&lt;p&gt;Make a list of species that occur in a given place, and only a fraction of the potential interaction links between species will ever occur. Building and analyzing these interaction networks has substantially advanced our understanding of community structure, function, and stability. Because the forces that control species&amp;rsquo; abundances and behaviors, it follows that these links&amp;ndash;and their ecological and evolutionary consequences&amp;ndash;may vary in space and time.&lt;/p&gt;
+
+&lt;p&gt;With a high-resolution dataset on the interactions between plants and pollinators, my collaborators and I have been asking questions about how interaction network properties change through time. We&amp;rsquo;ve demonstrated that temporal aggregation across whole years or many years hides underlying variation in plant-pollinator interactions. For example a &amp;ldquo;generalist&amp;rdquo; pollinator may appear to visit many flower species over the course of a year, whereas it actually engages in a series of highly specialized interactions. We&amp;rsquo;ve shown that these interaction turnovers are more often caused by pollinators shifting between available plant partner species rather than the emergence and disapperance of flowers as the growing season progresses. We&amp;rsquo;re working to understand the topological properties of these fine-scaled networks and how temporal aggregation changes our perception of community structure and function.&lt;/p&gt;
+
+&lt;h4 id=&#34;project-mutualists&#34;&gt;Project mutualists:&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://pauljcaradonna.com/&#34; target=&#34;_blank&#34;&gt;Paul CaraDonna&lt;/a&gt;, Chicago Botanical Garden&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://judithbronstein.com/&#34; target=&#34;_blank&#34;&gt;Judie Bronstein&lt;/a&gt;, University of Arizona&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.natesanders.org/&#34; target=&#34;_blank&#34;&gt;Nate Sanders&lt;/a&gt;, University of Vermont&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Ross Brennan, University of California, Davis&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;plant-herbivore-interactions&#34;&gt;Plant-herbivore interactions&lt;/h2&gt;
+
+&lt;p&gt;I collaborate on a number of projects to understand the patterns, mechanisms, and consequences of plant-herbivore interactions. The perspectives on these questions are inherently multi-disciplinary, ranging from chemical ecology to local adaptation.&lt;/p&gt;
+
+&lt;h4 id=&#34;collaborators&#34;&gt;Collaborators:&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://plantherbivory.weebly.com/&#34; target=&#34;_blank&#34;&gt;Xoaquín Moreira&lt;/a&gt;, Misión Biológica de Galicia (MBG-CSIC)&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://luisabdalaroberts-tritrophic.weebly.com/&#34; target=&#34;_blank&#34;&gt;Luis Abdala-Roberts&lt;/a&gt;, Universidad Autónoma de Yucatán&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.tritrophic.org/&#34; target=&#34;_blank&#34;&gt;Kailen Mooney&lt;/a&gt;, University of California, Irvine&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Mechanisms underlying plant sexual dimorphism in multi‐trophic arthropod communities</title>
       <link>http://wpetry.github.io/publication/ecology_2013/</link>
       <pubDate>Sun, 01 Sep 2013 00:00:00 +0000</pubDate>
@@ -405,30 +469,15 @@ overlay2
     </item>
     
     <item>
-      <title>Plant sex and induced responses independently influence herbivore performance, natural enemies and aphid-tending ants</title>
-      <link>http://wpetry.github.io/publication/arthroplantint_2012/</link>
-      <pubDate>Sat, 01 Dec 2012 00:00:00 +0000</pubDate>
+      <title>Comparative demography</title>
+      <link>http://wpetry.github.io/project/compadre/</link>
+      <pubDate>Tue, 01 Jan 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://wpetry.github.io/publication/arthroplantint_2012/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Influence of macronutrient imbalance on native ant foraging and interspecific interactions in the field</title>
-      <link>http://wpetry.github.io/publication/ecolentomol_2012/</link>
-      <pubDate>Fri, 25 May 2012 00:00:00 +0000</pubDate>
-      
-      <guid>http://wpetry.github.io/publication/ecolentomol_2012/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>A quantitative comparison of two sample methods for collecting Amblyomma americanum and Dermacentor variabilis (Acari: Ixodidae) in Missouri</title>
-      <link>http://wpetry.github.io/publication/expapplacar_2010/</link>
-      <pubDate>Wed, 01 Dec 2010 00:00:00 +0000</pubDate>
-      
-      <guid>http://wpetry.github.io/publication/expapplacar_2010/</guid>
-      <description></description>
+      <guid>http://wpetry.github.io/project/compadre/</guid>
+      <description>&lt;p&gt;In addition to building demographic models and parameterizing them with field data, I am a member of the Science Committee for the twin databases of matrix population models, COMPADRE and COMADRE. Our goal is to enable comparative demographic studies by assembling a comprehensive database of demographic models and their associated metadata, then making it publicly available along with tools to work with the data.&lt;/p&gt;
+
+&lt;p&gt;See our &lt;a href=&#34;https://compadredb.wordpress.com/&#34; target=&#34;_blank&#34;&gt;blog&lt;/a&gt; for highlights of recent papers that have resulted from this effort, or download the latest versions of each dataset &lt;a href=&#34;http://www.compadre-db.org/Data&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
     </item>
     
   </channel>
