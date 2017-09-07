@@ -11,32 +11,63 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>The T[R]ue Size Of...</title>
-      <link>http://wpetry.github.io/post/truesizeof/</link>
+      <title>How many Switzerlands is a California?</title>
+      <link>http://wpetry.github.io/post/howmanyswitzerlands/</link>
       <pubDate>Fri, 21 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://wpetry.github.io/post/truesizeof/</guid>
+      <guid>http://wpetry.github.io/post/howmanyswitzerlands/</guid>
       <description>
 
-&lt;h1 id=&#34;1-objective&#34;&gt;1. Objective&lt;/h1&gt;
+&lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/Overlay.jpeg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;elide&lt;/code&gt; offers tools to manipulate Spatial* objects of all types to compare unfamiliar spatial extents to more familiar benchmarks. This tutorial shows how to use this function to make compelling visual comparisons.&lt;/p&gt;
 
-&lt;p&gt;My current field work is split between the western United States and Switzerland, areas where political boundaries are drawn on vastly different scales. This makes communicating scale very difficult to audiences in both places. &lt;strong&gt;Here I show how to overlay countries and other administrative boundaries from all over the world using R, revealing their relative sizes in a visual, visceral way.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Featured skills:&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;This R tutorial was inspired by &lt;a href=&#34;https://www.zsl.org/users/rosie-woodroffe&#34; target=&#34;_blank&#34;&gt;Dr. Rosie Woodroffe&lt;/a&gt;, who very effectively deployed a similar visual strategy to communicate the enormous size of African Wild Dog home ranges in her recent seminar at the University of Zürich. The &amp;ldquo;clever&amp;rdquo; title was borrowed from the folks at &lt;a href=&#34;http://thetruesize.com/&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;The True Size Of&amp;hellip;&amp;rdquo;&lt;/a&gt; and shamelessly converted into an R pun. Be sure to check out their interactive web app that lets you drag colored outlines of US states and the countries of the world around a Google map——projections are deceiving!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;elide&lt;/code&gt; to move, rotate, and scale Spatial* objects&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;aggregating polygons&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;calculating new polygons from overlapping polygons&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;calculating global and regional centroids&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;plotting spatial data with &lt;code&gt;ggplot2&lt;/code&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h1 id=&#34;2-data&#34;&gt;2. Data&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;UPDATE (September 2017)&lt;/strong&gt;: The &lt;code&gt;sf&lt;/code&gt; package has been developed to allow better integration of spatial data with the tidyverse. By re-imagining the way that spatial data are stored, many of these clunky steps to get shapefiles into &lt;code&gt;ggplot&lt;/code&gt; can now be avoided. For more, see the &lt;code&gt;sf&lt;/code&gt; package vignettes at&lt;br /&gt;
+&lt;a href=&#34;https://r-spatial.github.io/sf/&#34; target=&#34;_blank&#34;&gt;https://r-spatial.github.io/sf/&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;My goal was to compare the size of the study region for my Ph.D. research (Gunnison County, Colorado) to that of my new home (Switzerland). Thankfully there&amp;rsquo;s an open database of administrative boundaries (&lt;a href=&#34;http://www.gadm.org/&#34; target=&#34;_blank&#34;&gt;GADM&lt;/a&gt;) and it can be accessed through the &lt;code&gt;raster::getData&lt;/code&gt; function in &lt;code&gt;R&lt;/code&gt;. It&amp;rsquo;s possible to substitute in any shapefile, whether retrieved from a database or custom built.&lt;/p&gt;
+&lt;h1 id=&#34;a-loss-in-translation&#34;&gt;A loss in translation&lt;/h1&gt;
 
-&lt;h1 id=&#34;3-code&#34;&gt;3. Code&lt;/h1&gt;
+&lt;p&gt;Ecologists (and field scientists more generally) work over vastly different scales, and we rely on familiar units like sports field sizes, famous building heights, and administrative boundaries to communicate these scales in a meaningful way.&lt;/p&gt;
 
-&lt;h3 id=&#34;3-1-prelminaries&#34;&gt;3.1. Prelminaries&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;But what happens when your audience doesn&amp;rsquo;t have a connection to these cultural touchstones?&lt;/strong&gt; I moved to Switzerland from the western United States earlier this year; the &lt;a href=&#34;https://en.wikipedia.org/wiki/List_of_counties_in_California#List&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;subdivisions&lt;/em&gt; of national subdivisions I&amp;rsquo;m used to&lt;/a&gt; are the size of &lt;a href=&#34;https://en.wikipedia.org/wiki/Cantons_of_Switzerland#List&#34; target=&#34;_blank&#34;&gt;national subdivisions&lt;/a&gt; and even &lt;a href=&#34;https://en.wikipedia.org/wiki/Liechtenstein&#34; target=&#34;_blank&#34;&gt;whole sovereign countries&lt;/a&gt;. Despite the relief of being able to use the metric system in daily interactions, most of my go-to &amp;ldquo;visceral units&amp;rdquo; are just as useless to my colleagues and my audiences here as the abstract large numbers they try to make tangible.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Here I show how to overlay countries and other administrative boundaries from all over the world using R, revealing their relative sizes in a visual, visceral way.&lt;/strong&gt; This tutorial was inspired by &lt;a href=&#34;https://www.zsl.org/users/rosie-woodroffe&#34; target=&#34;_blank&#34;&gt;Dr. Rosie Woodroffe&lt;/a&gt;, who very effectively deployed a similar visual strategy to communicate the enormous size of African Wild Dog home ranges in her recent seminar at the University of Zürich. There are several interactive tools available like &lt;a href=&#34;http://thetruesize.com/&#34; target=&#34;_blank&#34;&gt;The True Size Of&amp;hellip;&lt;/a&gt;, but none of them have the flexibility to handle custom spatial data. A handful of simple tools in R fill this gap.&lt;/p&gt;
+
+&lt;h1 id=&#34;data&#34;&gt;Data&lt;/h1&gt;
+
+&lt;p&gt;Numerical precision is an essential tool of science, but it tends to lose audiences whether composed of scientists or non-scientists. For a visual representation of scale, we need spatial data.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ll consider two examples:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Plotting my Ph.D. field sites against a Swiss-relevant benchmark.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Tiling California with Switzerlands to show off a few other features.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The administrative boundary data come from the &lt;a href=&#34;http://www.gadm.org/&#34; target=&#34;_blank&#34;&gt;Global Administrative Area database&lt;/a&gt;. I&amp;rsquo;ve also pulled in some open data archived with Dryad from my dissertation work.&lt;/p&gt;
+
+&lt;h1 id=&#34;code&#34;&gt;Code&lt;/h1&gt;
+
+&lt;h3 id=&#34;1-communicate-spatial-scale-in-x-to-an-audience-in-y&#34;&gt;1. Communicate spatial scale in X to an audience in Y&lt;/h3&gt;
+
+&lt;h4 id=&#34;1-1-preliminaries&#34;&gt;1.1. Preliminaries&lt;/h4&gt;
 
 &lt;p&gt;Load the packages containing the functions we&amp;rsquo;ll use. If you haven&amp;rsquo;t used these packages before, be sure to &lt;code&gt;install.packages&lt;/code&gt; first.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-r prelim, message=F, warning=F&#34;&gt;library(raster)       # despite the name, accesses vector representations of administrative boundaries
+&lt;pre&gt;&lt;code&gt;library(raster)       # despite the name, we&#39;ll use it to access vector
+                      # representations of administrative boundaries
 library(rgeos)        # spatial tools
 library(maptools)     # more spatial tools
 library(tidyverse)    # data wrangling workhorse
@@ -44,16 +75,22 @@ library(ggplot2)      # plotting workhorse
 library(ggmap)        # contains a useful theme_nothing for very simple maps
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-r versions, echo=F&#34;&gt;suppressWarnings(data.frame(installed.packages())[, c(&amp;quot;Package&amp;quot;, &amp;quot;Version&amp;quot;)] %&amp;gt;%
-                   filter(Package %in% c(&amp;quot;raster&amp;quot;, &amp;quot;rgeos&amp;quot;, &amp;quot;maptools&amp;quot;,
-                                         &amp;quot;tidyverse&amp;quot;, &amp;quot;ggplot2&amp;quot;, &amp;quot;ggmap&amp;quot;)))
+&lt;p&gt;Package versions used:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;##     Package    Version
+## 1     ggmap      2.6.1
+## 2   ggplot2      2.2.1
+## 3  maptools      0.9-2
+## 4    raster      2.5-8
+## 5     rgeos     0.3-23
+## 6 tidyverse      1.1.1
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;3-2-retrieve-spatial-data&#34;&gt;3.2. Retrieve spatial data&lt;/h3&gt;
+&lt;h4 id=&#34;1-2-retrieve-spatial-data&#34;&gt;1.2. Retrieve spatial data&lt;/h4&gt;
 
 &lt;p&gt;We&amp;rsquo;ll start by gathering the appropriate data and subsetting it where necessary. &lt;code&gt;getData&lt;/code&gt; will only download full countries where the &lt;code&gt;level&lt;/code&gt; argument specifies whether the boundaris are for the full country outline (&lt;code&gt;level = 0&lt;/code&gt;), first subdivisions (&lt;code&gt;level = 1&lt;/code&gt; like states, provinces, or cantons), or second subdivisions (&lt;code&gt;level = 2&lt;/code&gt; like US counties; only available for some countries). Note that a full list of ISO-3 country codes may be called using &lt;code&gt;getData(&amp;quot;ISO3&amp;quot;)&lt;/code&gt;. For more detail, check out the metadata at &lt;a href=&#34;http://www.gadm.org/&#34; target=&#34;_blank&#34;&gt;GADM&lt;/a&gt;.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-r getdata&#34;&gt;## Gunnison County, Colorado, USA
+&lt;pre&gt;&lt;code&gt;## Gunnison County, Colorado, USA
 # download US county boundaries
 USA.2 &amp;lt;- getData(&amp;quot;GADM&amp;quot;, country = &amp;quot;USA&amp;quot;, level = 2)
 # subset to focal county
@@ -65,26 +102,18 @@ gunni &amp;lt;- USA.2 %&amp;gt;%
 switz &amp;lt;- getData(&amp;quot;GADM&amp;quot;, country = &amp;quot;CHE&amp;quot;, level = 0)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;A quick plot just to make sure we specified the correct level illustrates the problem: we can&amp;rsquo;t just plot each polygon and expect them to line up. R automatically scales each polygon to fill the plot canvas, so the latitudinal range of &lt;code&gt;gunni&lt;/code&gt; is  about 1.5° whereas the latitudinal range of &lt;code&gt;switz&lt;/code&gt; is closer to 5°. Moreover, they each occupy a different part of the coordinate range.&lt;/p&gt;
+&lt;p&gt;A quick plot just to make sure we specified the correct level illustrates the problem: we can&amp;rsquo;t just plot each polygon and expect them to line up. R automatically scales each polygon to fill the plot canvas, so the latitudinal range of &lt;code&gt;gunni&lt;/code&gt; is about 1.5° whereas the latitudinal range of &lt;code&gt;switz&lt;/code&gt; is closer to 5°. Moreover, they each occupy a different part of the coordinate range.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-r qplot, echo=F&#34;&gt;opar &amp;lt;- par(mfrow=c(1,2))
-plot(gunni, main = &amp;quot;gunni&amp;quot;, axes = T)
-plot(switz, main = &amp;quot;switz&amp;quot;, axes = T)
-par(opar)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/qplot-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;3-3-move-mountains-and-lakes-rivers-cities&#34;&gt;3.3. Move mountains (and lakes, rivers, cities&amp;hellip;)&lt;/h3&gt;
-
-&lt;p&gt;The key function for this task is &lt;code&gt;elide&lt;/code&gt; in the &lt;code&gt;maptools&lt;/code&gt; package. It can be used to apply all sorts of transformations to Spatial* objects, including rotations, flips, and size scaling. We&amp;rsquo;ll focus on the &lt;code&gt;shift&lt;/code&gt; argument to simultaneously move the boundary of Switzerland west and south to hover over Gunnison County, Colorado, USA.&lt;/p&gt;
+&lt;h4 id=&#34;1-3-move-mountains-and-lakes-rivers-cities&#34;&gt;1.3. Move mountains (and lakes, rivers, cities&amp;hellip;)&lt;/h4&gt;
 
 &lt;p&gt;The first step is to determine how far west and how far south we need to move Switzerland such that it aligns properly. One solution is to guess and check, but we don&amp;rsquo;t have all day. Instead we can calculate the centroids of both polygons, then calculate the rise (=latitude) and run (=longitude) of an imaginary right triangle whose hypotenuse is the direct path from centroid to centroid.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-r centroids&#34;&gt;# centroid of Gunnison County
+&lt;pre&gt;&lt;code&gt;# centroid of Gunnison County
 gunni.center &amp;lt;- gCentroid(gunni)
-
 # centroid of Switzerland
 switz.center &amp;lt;- gCentroid(switz)
-
 # calculate latitudinal and longitudinal displacement of Switzerland using the centroid
 # of Gunnison County as a reference point
 shift &amp;lt;- coordinates(gunni.center)-coordinates(switz.center)
@@ -92,61 +121,244 @@ shift &amp;lt;- coordinates(gunni.center)-coordinates(switz.center)
 
 &lt;p&gt;Now we can use &lt;code&gt;elide&lt;/code&gt; to move the whole country of Switzerland (with free shipping!). R doesn&amp;rsquo;t know that we&amp;rsquo;ve accomplished such a herculean task. The polygon of Switzerland is just a polygon with no deeper meaning or expectation of where it should be relative to other places on our map. To avoid confusion (and preserve the correct position of Switzerland), we&amp;rsquo;ll store the shifted Switzerland in a new object.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-r move&#34;&gt;switz.shifted &amp;lt;- elide(switz, shift = shift)
+&lt;pre&gt;&lt;code&gt;switz.shifted &amp;lt;- elide(switz, shift = shift)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;3-4-make-the-map&#34;&gt;3.4. Make the map&lt;/h3&gt;
+&lt;h4 id=&#34;1-4-make-the-map&#34;&gt;1.4. Make the map&lt;/h4&gt;
 
-&lt;p&gt;And now for the big reveal, had I not so effectively spoiled it with the image at the top of this page. We&amp;rsquo;ll convert the polygons into ggplot2-friendly data frames, then build up our map layer by layer.&lt;/p&gt;
+&lt;p&gt;And now for the big reveal, had I not so effectively spoiled it with the image at the top of the post. We&amp;rsquo;ll convert the polygons into ggplot2-friendly data frames, then build up our map layer by layer.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-r map1, message=F&#34;&gt;# &amp;quot;fortify&amp;quot; polygons into plottable data frames
+&lt;pre&gt;&lt;code&gt;# &amp;quot;fortify&amp;quot; polygons into plottable data frames
 gunni.fort &amp;lt;- fortify(gunni)
 switz.shifted.fort &amp;lt;- fortify(switz.shifted)
 
 # make map
 overlay&amp;lt;-ggplot(data = gunni.fort, aes(y = lat, x = long, group = group, fill = NULL)) +
-  geom_polygon(fill = &amp;quot;transparent&amp;quot;, color = &amp;quot;blue&amp;quot;,
-               size = 0.5) +  # plots Gunnison County
-  geom_polygon(data = switz.shifted.fort, aes(y = lat, x = long,  # plots Switzerland
-               group = group, fill = NULL), fill = &amp;quot;transparent&amp;quot;, color = &amp;quot;black&amp;quot;,
-               size = 0.5) +
+  geom_polygon(fill = &amp;quot;transparent&amp;quot;, color = &amp;quot;blue&amp;quot;, size = 0.5) +  # plots Gunnison County
+  geom_polygon(data = switz.shifted.fort, aes(y = lat, x = long, group = group, fill = NULL),
+               fill = &amp;quot;transparent&amp;quot;, color = &amp;quot;black&amp;quot;, size = 0.5) +  # plots Switzerland
   coord_equal() +
   theme_nothing()
+
+## Warning: `panel.margin` is deprecated. Please use `panel.spacing` property
+## instead
+
 overlay
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Our approximation based on the centroids of each polygon got us very close, but there&amp;rsquo;s a visually sloppy overlap along the southern boarders. Ideally, we&amp;rsquo;d like Gunnison County (in blue) to fit nicely wihin the bounds of Switzerland (in black). From here the adjustment is manual: the east/west alignment of the centroids looks pretty good, but we need Switzerland to overshoot a little more to the south.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/map1-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-r map2, message=F&#34;&gt;# leave longitude shift alone, adjust latitude shift a little more south
-shift2 &amp;lt;- coordinates(gunni.center)-coordinates(switz.center)-c(0,0.12) # in degrees!
+&lt;p&gt;Our approximation based on the centroids of each polygon got us very close, but there&amp;rsquo;s a visually sloppy overlap along the southern borders. Ideally, we&amp;rsquo;d like Gunnison County (in blue) to fit nicely wihin the bounds of Switzerland (in black). From here the adjustment is manual: the east/west alignment of the centroids looks pretty good, but we need Switzerland to overshoot a little more to the south.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# leave longitude shift alone, adjust latitude shift a little more south
+shift2 &amp;lt;- coordinates(gunni.center)-coordinates(switz.center)-c(0,0.12) # units are in degrees!
 switz.shifted2 &amp;lt;- elide(switz, shift = shift2)
 switz.shifted.fort2 &amp;lt;- fortify(switz.shifted2)
 
 # update map and add some helpful labels
 overlay2&amp;lt;-ggplot(data = gunni.fort, aes(y = lat, x = long, group = group, fill = NULL)) +
-  geom_polygon(fill = &amp;quot;transparent&amp;quot;, color = &amp;quot;blue&amp;quot;,
-               size = 0.5) +  # plots Gunnison County
-  geom_polygon(data = switz.shifted.fort2, aes(y = lat, x = long, group = group,
-               fill = NULL),
+  geom_polygon(fill = &amp;quot;transparent&amp;quot;, color = &amp;quot;blue&amp;quot;, size = 0.5) +  # plots Gunnison County
+  geom_polygon(data = switz.shifted.fort2, aes(y = lat, x = long, group = group, fill = NULL),
                fill = &amp;quot;transparent&amp;quot;, color = &amp;quot;black&amp;quot;, size = 0.5) +  # plots Switzerland
   coord_equal() +
-  annotate(&amp;quot;text&amp;quot;, x = -106.955, y = 38.66481, label = &amp;quot;Gunnison County\nColorado, USA&amp;quot;,
-           size = 4, fontface = &amp;quot;bold&amp;quot;, color = &amp;quot;blue&amp;quot;) +
-  annotate(&amp;quot;text&amp;quot;, x = -107.955, y = 38.66481, label = &amp;quot;Switzerland&amp;quot;, size = 4,
-           fontface = &amp;quot;bold&amp;quot;, color = &amp;quot;black&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -106.955, y = 38.66481, label = &amp;quot;Gunnison County\nColorado, USA&amp;quot;, size = 4,
+           fontface = &amp;quot;bold&amp;quot;, color = &amp;quot;blue&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -107.955, y = 38.66481, label = &amp;quot;Switzerland&amp;quot;, size = 4, fontface = &amp;quot;bold&amp;quot;,
+           color = &amp;quot;black&amp;quot;) +
   theme_nothing()
+
+## Warning: `panel.margin` is deprecated. Please use `panel.spacing` property
+## instead
+
 overlay2
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/map2-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In reality my research didn&amp;rsquo;t cover the entirety of Gunnison County, so a more informative map would show the populations where I actually worked. So let&amp;rsquo;s do that (ht: journal requirements to archive raw data)&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Read in data with focal population coordinates
+pops&amp;lt;-read.csv(&amp;quot;http://datadryad.org/bitstream/handle/10255/dryad.119000/SexRatios.csv&amp;quot;)
+
+overlay3 &amp;lt;- overlay2 +
+  geom_point(data = pops, aes(x = longitude.dd, y = latitude.dd, group = NULL, fill = NULL),
+             shape = &amp;quot;+&amp;quot;, color = &amp;quot;blue&amp;quot;, size = 6) +
+  annotate(&amp;quot;text&amp;quot;, x = -106.955, y = 38.66481, label = &amp;quot;Gunnison County\nColorado, USA&amp;quot;, size = 4,
+           fontface = &amp;quot;bold&amp;quot;, color = &amp;quot;blue&amp;quot;)
+overlay3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/pops-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
 &lt;p&gt;All that remains is to save the image in your desired file format. Dr. Woodroffe produced a nice effect by first showing a homerange polygon she made for a pack of African Wild Dogs that she&amp;rsquo;s been studying. The background was made transparent, so that the images of Wild Dogs in the background still shown through. Then she added the outline of Switzerland (also with a transparent background) to call emphasis to her point: a pack of Wild Dogs needs an area the size of several Swiss cantons to survive. Note that this is only possible with image formats that allow transparency (e.g. .png, .svg, .pdf).&lt;/p&gt;
 
-&lt;h1 id=&#34;4-extensions&#34;&gt;4. Extensions&lt;/h1&gt;
+&lt;h3 id=&#34;2-how-many-switzerlands-is-a-california&#34;&gt;2. How many Switzerlands is a California?&lt;/h3&gt;
 
-&lt;p&gt;A much richer map would show the locations of my &lt;a href=&#34;http://datadryad.org/resource/doi:10.5061/dryad.1cf8p/5&#34; target=&#34;_blank&#34;&gt;study sites&lt;/a&gt; within Gunnison County, giving a better sense of where I actually worked. Perhaps a shaded relief might be nice to help convey the topographic complexity of Gunnison County. Carefully layering these data with &lt;code&gt;ggplot&lt;/code&gt; makes this all possible, but these are best saved for another tutorial.&lt;/p&gt;
+&lt;p&gt;Admittedly this is an absurd question, though perhaps it could pass as merely whimsical if you the reader are feeling generous. However, it offers an opportunity to show off some other tricks &lt;code&gt;elide&lt;/code&gt; has hidden up its sleeve. You see, &lt;code&gt;elide&lt;/code&gt; doesn&amp;rsquo;t just move Spatial* objects to new latitudes and longitudes, it can do much, much more.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/Overlay2.jpeg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;A quick look at &lt;code&gt;?elide&lt;/code&gt; tells all. In addition to the argument for &lt;code&gt;shift&lt;/code&gt; that we used to move Switzerland over to central Colorado, there are arguments to &lt;code&gt;reflect&lt;/code&gt; objects (sure to please &lt;a href=&#34;http://westwing.wikia.com/wiki/Somebody%27s_Going_to_Emergency,_Somebody%27s_Going_to_Jail&#34; target=&#34;_blank&#34;&gt;West Wing fans&lt;/a&gt;), &lt;code&gt;scale&lt;/code&gt; them to larger or smaller sizes while preserving shape, or &lt;code&gt;rotate&lt;/code&gt; them around any point. Moreover, &lt;code&gt;elide&lt;/code&gt; can work its magic on more than just vector files. With these tools you are the choreographer of continents, rewriting the rules of plate tectonics.&lt;/p&gt;
 
-&lt;p&gt;Now if only it were so easy to &lt;code&gt;elide&lt;/code&gt; a burrito from &lt;a href=&#34;http://www.teocallitamale.com/&#34; target=&#34;_blank&#34;&gt;Teocalli Tamale&lt;/a&gt; over here to Switzerland&amp;hellip;&lt;/p&gt;
+&lt;h4 id=&#34;2-1-gather-spatial-data&#34;&gt;2.1. Gather spatial data&lt;/h4&gt;
+
+&lt;p&gt;We&amp;rsquo;ve already have an outline of Switzerland from code in §1.1. Now we&amp;rsquo;ll retrieve data for California. There are two ways of doing this. The mirrors our approach to isolating Gunnison County, Colorado from Level 2 data; we simply download Level 1 boundaries for the USA and subset to the state of California. The second merges all of the counties of California from the Level 2 data (already downloaded and in our work environment).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;## Approach (a): Download states, subset to California
+USA.1 &amp;lt;- getData(&amp;quot;GADM&amp;quot;, country = &amp;quot;USA&amp;quot;, level = 1)
+# subset to focal county
+CAfromstates &amp;lt;- USA.1 %&amp;gt;%
+  subset(., USA.1$NAME_1 == &amp;quot;California&amp;quot;)
+
+## Approach (b): Merge counties to form California
+CAfromcounties &amp;lt;- USA.2 %&amp;gt;%
+  subset(., .$NAME_1 == &amp;quot;California&amp;quot;) %&amp;gt;%
+  unionSpatialPolygons(., .$ID_1) # ID_1 merges all polygons within California
+
+opar &amp;lt;- par(mfrow=c(1,2))  # panel plots
+plot(CAfromstates, main = &amp;quot;Subset states (Level 1)&amp;quot;)
+plot(CAfromcounties, main = &amp;quot;Merged counties (Level 2)&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/getcali-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;2-2-move-switzerlands-to-california-first-approximation&#34;&gt;2.2. Move Switzerlands to California: First approximation&lt;/h4&gt;
+
+&lt;p&gt;We&amp;rsquo;ll start by crudely estimating how many Switzerlands will fit in California. We can do this any number of ways, but for a rough idea we can look at the bounding boxes of both California and Switzerland with &lt;code&gt;bbox()&lt;/code&gt;. This will return the minima and maxima for both latitude (y) and longitude (x).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Absoulte bounding boxes
+bbox(CAfromstates)
+
+##          min        max
+## x -124.41556 -114.12949
+## y   32.53088   42.00983
+
+bbox(switz)
+
+##         min      max
+## x  5.956063 10.49511
+## y 45.817059 47.80848
+
+# Relative bounding boxes (column differences)
+(CA.dimensions &amp;lt;- bbox(CAfromstates)[, 2] - bbox(CAfromstates)[, 1])
+
+##         x         y 
+## 10.286072  9.478947
+
+(switz.dimensions &amp;lt;- bbox(switz)[, 2] - bbox(switz)[, 1])
+
+##        x        y 
+## 4.539049 1.991425
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;These measurements can be particularly misleading for longitude, because the distance between lines of longitude approaches 0 towards the poles. Switzerland, being located farther north, will thus have closer lines of longitude. Distances between latitude aren&amp;rsquo;t exactly equal because Earth is not a perfect sphere, but they&amp;rsquo;re more consistent. We&amp;rsquo;ll use latitude as the basis for a first guess of how many Switzerlands to use.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Calculate a multiple describing how many Switzerland &amp;quot;heights&amp;quot; (=latitude range)
+# are needed to equal the &amp;quot;height&amp;quot; of California
+(mult &amp;lt;- CA.dimensions[&amp;quot;y&amp;quot;]/switz.dimensions[&amp;quot;y&amp;quot;])
+
+##        y 
+## 4.759882
+
+# Make five Switzerlands and move over to approximately line up with California
+CA.center &amp;lt;- gCentroid(CAfromstates)
+CA.longitude.center &amp;lt;- CA.center@coords[1]  # this will be the (shared) target longitude
+CA.latitudes &amp;lt;- seq(bbox(CAfromstates)[&amp;quot;y&amp;quot;, ][1],  # these will be the target latitudes
+                    bbox(CAfromstates)[&amp;quot;y&amp;quot;, ][2], length.out = ceiling(mult))
+shifts &amp;lt;- cbind(CA.longitude.center-coordinates(switz.center)[, &amp;quot;x&amp;quot;],
+                CA.latitudes-coordinates(switz.center)[, &amp;quot;y&amp;quot;])
+
+switz.shifted.list &amp;lt;- vector(mode = &amp;quot;list&amp;quot;) # create list to hold elided Switzerlands
+for(i in 1:nrow(shifts)){  # automatically generate and store enough elided Switzerlands
+  switz.shifted.list[[i]] &amp;lt;- elide(switz, shift = shifts[i, ])
+}
+
+# Visualize Switzerlands on California
+plot(CAfromstates)
+invisible(lapply(switz.shifted.list, function(x){plot(x, col = rgb(1, 0, 0, 0.8), border = &amp;quot;transparent&amp;quot;, add = T)}))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/chca1-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The result is a good first pass, but the alignment poorly matches the curved shape of California. Also, the northern-most and southern-most Switzerlands overlap borders of California. We could manually adjust all of these, but this would be a headache even with the small number of Switzerlands we&amp;rsquo;ve generated. Thankfully there&amp;rsquo;s a better way&amp;hellip;&lt;/p&gt;
+
+&lt;h4 id=&#34;2-3-move-switzerlands-to-california-a-better-approximation&#34;&gt;2.3. Move Switzerlands to California: A better approximation&lt;/h4&gt;
+
+&lt;p&gt;The strategy here is to divide and conqueor. We&amp;rsquo;ll cut California into latitudinal regions, then use the &lt;code&gt;gCentroid&lt;/code&gt; function from earlier to calculate a centroid for each region. Finally, we match a Switzerland to each region&amp;rsquo;s centroid.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;## Make five regional polygons (i.e. make 4 slender &amp;quot;cuts&amp;quot; of the latitudinal extent of CAfromstates)
+CAextent &amp;lt;- as(extent(CAfromstates), &#39;SpatialPolygons&#39;)
+crs(CAextent) &amp;lt;- proj4string(CAfromstates)
+regions &amp;lt;- data.frame(x = unname(bbox(CAfromstates)[&amp;quot;x&amp;quot;, ]),
+                      y = rep(seq(bbox(CAfromstates)[&amp;quot;y&amp;quot;, &amp;quot;min&amp;quot;], bbox(CAfromstates)[&amp;quot;y&amp;quot;, &amp;quot;max&amp;quot;], length.out = 6)[2:5], each = 2),
+                      id = rep(letters[1:4], each = 2)) %&amp;gt;%
+  split(., f = .$id) %&amp;gt;%
+  lapply(., function(x){Line(x[, c(&amp;quot;x&amp;quot;, &amp;quot;y&amp;quot;)])}) %&amp;gt;%
+  Lines(., ID = &amp;quot;breaks&amp;quot;) %&amp;gt;%
+  list(.) %&amp;gt;%
+  SpatialLines(., proj4string = CRS(proj4string(CAfromstates))) %&amp;gt;%
+  gBuffer(., width = 1e-8) %&amp;gt;%
+  gDifference(CAextent, .) %&amp;gt;%
+  disaggregate(.)
+
+## Warning in gBuffer(., width = 1e-08): Spatial object is not projected; GEOS
+## expects planar coordinates
+
+# Calculate centroids of each region
+region.centers &amp;lt;- gIntersection(CAfromstates, regions, byid = T) %&amp;gt;%
+  gCentroid(., byid = T)
+
+# Quick visualization that centroids were calculated correctly
+plot(regions)
+plot(CAfromstates, add = T)
+plot(region.centers, add = T)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/chca2-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;## Elide a Switzerland onto each centroid
+shifts2 &amp;lt;- cbind(coordinates(region.centers)[, &amp;quot;x&amp;quot;]-coordinates(switz.center)[, &amp;quot;x&amp;quot;],
+                coordinates(region.centers)[, &amp;quot;y&amp;quot;]-coordinates(switz.center)[, &amp;quot;y&amp;quot;])
+
+switz.shifted.list2 &amp;lt;- vector(mode = &amp;quot;list&amp;quot;) # create list to hold elided Switzerlands
+for(i in 1:nrow(shifts2)){  # automatically elide Switzerlands to the centroids
+  switz.shifted.list2[[i]] &amp;lt;- elide(switz, shift = shifts2[i, ])
+}
+
+# Quick visualization of the results
+plot(CAfromstates)
+invisible(lapply(switz.shifted.list2, function(x){plot(x, col = rgb(1, 0, 0, 0.8), border = &amp;quot;transparent&amp;quot;, add = T)}))
+points(region.centers, pch = &amp;quot;+&amp;quot;, col = &amp;quot;white&amp;quot;, cex = 6)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/chca2-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here we can see that the fit is much better when using regional centers (white &amp;ldquo;+&amp;rdquo; symbols), especially as an automated approximation. Pardon the visual pun to the &lt;a href=&#34;https://en.wikipedia.org/wiki/Flag_of_Switzerland&#34; target=&#34;_blank&#34;&gt;flag of Switzerland&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;2-4-beyond-shifts&#34;&gt;2.4. Beyond shifts&lt;/h4&gt;
+
+&lt;p&gt;&lt;code&gt;elide&lt;/code&gt; also allows Spatial* objects to be rotated, perhaps allowing us to get a better fit. Let&amp;rsquo;s focus on the southern-most Switzerland, manually rotating it to better fit over southern California. We&amp;rsquo;ll tell it to rotate 200 degrees clockwise around its centroid (IMPORTANT: the center of rotation refers to the object before any other transformations have been applied).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Replace the 1st (southern-most) Switzerland, adding a rotation
+switz.shifted.list2[[1]] &amp;lt;- elide(switz, shift = shifts2[1, ], rotate = 200, center = coordinates(switz.center))
+plot(CAfromstates)
+invisible(lapply(switz.shifted.list2, function(x){plot(x, col = rgb(1, 0, 0, 0.8), border = &amp;quot;transparent&amp;quot;, add = T)}))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/rotate-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;From here on in, the fit battle is a game of (manual) guess-and-check. Still, we&amp;rsquo;ve gotten close enough that any person who has lived in Switzerland can understand the scale of California visually and viscerally.&lt;/p&gt;
+
+&lt;h1 id=&#34;upshot&#34;&gt;Upshot&lt;/h1&gt;
+
+&lt;p&gt;There are 4-5 Switzerlands in a California, and visualization helps give audiences in both places a sense of scale in the other.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve broken two big rules with this post. First, manually aligning the positions of Spatial* objects is generally a &lt;strong&gt;really, really bad idea&lt;/strong&gt;. The &lt;code&gt;rgdal&lt;/code&gt; package has excellent tools for spatial transformation that will do what you tell it to correctly and reproducibly. Uses of &lt;code&gt;elide&lt;/code&gt; beyond producing figures should be approached with the upmost caution. Second, filling California with Swiss flag Switzerlands is wretched graphic design. Take it from Tufte who said:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Clutter and confusion are not attributes of data - they are&lt;br /&gt;
+shortcomings of design.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;But perhaps you foresaw some tongue-in-cheek from the post title. Now if only it were just as easy to &lt;code&gt;elide&lt;/code&gt; a decent burrito over here to Switzerland&amp;hellip;&lt;/p&gt;
 </description>
     </item>
     
