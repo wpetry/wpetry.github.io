@@ -33,7 +33,7 @@
 &lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;UPDATE (September 2017)&lt;/strong&gt;: The &lt;code&gt;sf&lt;/code&gt; package has been developed to allow better integration of spatial data with the tidyverse. By re-imagining the way that spatial data are stored, many of these clunky steps to get shapefiles into &lt;code&gt;ggplot&lt;/code&gt; can now be avoided. For more, see the &lt;code&gt;sf&lt;/code&gt; package vignettes at&lt;br /&gt;
+&lt;p&gt;&lt;strong&gt;UPDATE (September 2017)&lt;/strong&gt;: The &lt;code&gt;sf&lt;/code&gt; package has been developed to allow better integration of spatial data with the tidyverse. By re-imagining the way that spatial data are stored, many of these clunky steps to get shapefiles into &lt;code&gt;ggplot&lt;/code&gt; can now be avoided. However, not all &lt;code&gt;sp*&lt;/code&gt; functions are available yet as of this writing. For more, see the &lt;code&gt;sf&lt;/code&gt; package vignettes at&lt;br /&gt;
 &lt;a href=&#34;https://r-spatial.github.io/sf/&#34; target=&#34;_blank&#34;&gt;https://r-spatial.github.io/sf/&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h1 id=&#34;a-loss-in-translation&#34;&gt;A loss in translation&lt;/h1&gt;
