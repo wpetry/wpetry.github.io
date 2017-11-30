@@ -11,6 +11,15 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Elevational gradients in plant defences and insect herbivory: recent advances in the field and prospects for future research</title>
+      <link>http://wpetry.github.io/publication/ecography_2018/</link>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://wpetry.github.io/publication/ecography_2018/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>How many Switzerlands is a California?</title>
       <link>http://wpetry.github.io/post/howmanyswitzerlands/</link>
       <pubDate>Fri, 21 Jul 2017 00:00:00 +0000</pubDate>
@@ -678,18 +687,6 @@ shortcomings of design.&lt;/p&gt;
       
       <guid>http://wpetry.github.io/publication/ecology_2013/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Comparative demography</title>
-      <link>http://wpetry.github.io/project/compadre/</link>
-      <pubDate>Tue, 01 Jan 2013 00:00:00 +0000</pubDate>
-      
-      <guid>http://wpetry.github.io/project/compadre/</guid>
-      <description>&lt;p&gt;In addition to building demographic models and parameterizing them with field data, I am a member of the Science Committee for the twin databases of matrix population models, COMPADRE and COMADRE. Our goal is to enable comparative demographic studies by assembling a comprehensive database of demographic models and their associated metadata, then making it publicly available along with tools to work with the data.&lt;/p&gt;
-
-&lt;p&gt;See our &lt;a href=&#34;https://compadredb.wordpress.com/&#34; target=&#34;_blank&#34;&gt;blog&lt;/a&gt; for highlights of recent papers that have resulted from this effort, or download the latest versions of each dataset &lt;a href=&#34;http://www.compadre-db.org/Data&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-</description>
     </item>
     
   </channel>
