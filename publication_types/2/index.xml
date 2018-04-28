@@ -8,7 +8,9 @@
     <language>en-us</language>
     <copyright>&amp;copy; 2017 William Petry</copyright>
     <lastBuildDate>Mon, 01 Jan 2018 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/publication_types/2/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://wpetry.github.io/publication_types/2/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Elevational gradients in plant defences and insect herbivory: recent advances in the field and prospects for future research</title>
@@ -25,13 +27,10 @@
       <pubDate>Fri, 19 May 2017 00:00:00 +0000</pubDate>
       
       <guid>http://wpetry.github.io/publication/science_2017/</guid>
-      <description>&lt;p&gt;The &lt;a href=&#34;http://www.helsinki.fi/foodwebs/dummycaterpillars/&#34; target=&#34;_blank&#34;&gt;Global Dummy Caterpillar Project&lt;/a&gt; is:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://www.helsinki.fi/foodwebs/index.htm&#34; target=&#34;_blank&#34;&gt;Tomas Roslin&lt;/a&gt; (Project Leader), &lt;a href=&#34;http://www.zoo.ox.ac.uk/people/view/slade_e.htm&#34; target=&#34;_blank&#34;&gt;Eleanor Slade&lt;/a&gt; (Project Leader), &lt;a href=&#34;http://baloun.entu.cas.cz/png/cv-novotny-vojtech.html&#34; target=&#34;_blank&#34;&gt;Vojtech Novotny&lt;/a&gt; (Project Leader), &lt;a href=&#34;https://tuhat.helsinki.fi/portal/en/persons/bess-hardwick(deb2f83f-c8f6-4ddc-9a23-a2531f416fb5).html&#34; target=&#34;_blank&#34;&gt;Bess Hardwick&lt;/a&gt; (Project Coordinator)&lt;/p&gt;
-
-&lt;p&gt;Data contributors:&lt;br /&gt;
- &lt;a href=&#34;http://ashleyasmus.weebly.com/&#34; target=&#34;_blank&#34;&gt;Ashley Asmus&lt;/a&gt;, &lt;a href=&#34;http://starfsfolk.hi.is/en/simaskra/48081&#34; target=&#34;_blank&#34;&gt;Isabel C. Barrio&lt;/a&gt;, &lt;a href=&#34;http://stri.si.edu/sites/basset/&#34; target=&#34;_blank&#34;&gt;Yves Basset&lt;/a&gt;, Andrea Larissa Boesing, &lt;a href=&#34;http://web.hku.hk/~tbone/&#34; target=&#34;_blank&#34;&gt;Timothy C. Bonebrake&lt;/a&gt;, &lt;a href=&#34;https://tuhat.helsinki.fi/portal/en/persons/erin-cameron(6fbf33e9-5688-4749-8e05-b552a1d0518a).html&#34; target=&#34;_blank&#34;&gt;Erin K. Cameron&lt;/a&gt;, &lt;a href=&#34;http://www.wesleydattilo.org/&#34; target=&#34;_blank&#34;&gt;Wesley Dáttilo&lt;/a&gt;, &lt;a href=&#34;http://theantsofecuador.com/david/&#34; target=&#34;_blank&#34;&gt;David A. Donoso&lt;/a&gt;, &lt;a href=&#34;http://www1.osu.cz/home/Drozd/&#34; target=&#34;_blank&#34;&gt;Pavel Drozd&lt;/a&gt;, &lt;a href=&#34;https://claudialouisegray.com/&#34; target=&#34;_blank&#34;&gt;Claudia L. Gray&lt;/a&gt;, David S. Hik, &lt;a href=&#34;https://insectecology.une.edu.au/sarah.html&#34; target=&#34;_blank&#34;&gt;Sarah J. Hill&lt;/a&gt;, &lt;a href=&#34;http://users.utu.fi/taesho/&#34; target=&#34;_blank&#34;&gt;Tapani Hopkins&lt;/a&gt;, Shuyin Huang, Bonny Koane, Benita Laird-Hopkins, Liisa Laukkanen, Owen T. Lewis, &lt;a href=&#34;https://roadsinthesepotholes.wordpress.com/&#34; target=&#34;_blank&#34;&gt;Sol Milne&lt;/a&gt;, Isaiah Mwesige, Akihiro Nakamura, &lt;a href=&#34;http://www.collnell.com/&#34; target=&#34;_blank&#34;&gt;Colleen S. Nell&lt;/a&gt;, Elizabeth Nichols, &lt;a href=&#34;http://wpetry.github.io/&#34; target=&#34;_blank&#34;&gt;William K. Petry&lt;/a&gt;, Alena Prokurat, &lt;a href=&#34;http://tvardikova.weebly.com/&#34; target=&#34;_blank&#34;&gt;Katerina Sam&lt;/a&gt;, Niels M. Schmidt, Alison Slade, Victor Slade, Alžběta Suchanková, &lt;a href=&#34;http://kodu.ut.ee/~tiited/english/&#34; target=&#34;_blank&#34;&gt;Tiit Teder&lt;/a&gt;, &lt;a href=&#34;http://www.eeb.cornell.edu/sdv2/www/&#34; target=&#34;_blank&#34;&gt;Saskya van Nouhuys&lt;/a&gt;, &lt;a href=&#34;http://www.uib.no/en/persons/Vigdis.Vandvik&#34; target=&#34;_blank&#34;&gt;Vigdis Vandvik&lt;/a&gt;, &lt;a href=&#34;https://www.bayceer.uni-bayreuth.de/pfloek/en/mitarbeiter/mit/mitarbeiter_detail.php?id_obj=135003&#34; target=&#34;_blank&#34;&gt;Anita Weissflog&lt;/a&gt;, &amp;amp; Vital Zhukovich&lt;/p&gt;
-</description>
+      <description>The Global Dummy Caterpillar Project is:
+Tomas Roslin (Project Leader), Eleanor Slade (Project Leader), Vojtech Novotny (Project Leader), Bess Hardwick (Project Coordinator)
+Data contributors:
+Ashley Asmus, Isabel C. Barrio, Yves Basset, Andrea Larissa Boesing, Timothy C. Bonebrake, Erin K. Cameron, Wesley Dáttilo, David A. Donoso, Pavel Drozd, Claudia L. Gray, David S. Hik, Sarah J. Hill, Tapani Hopkins, Shuyin Huang, Bonny Koane, Benita Laird-Hopkins, Liisa Laukkanen, Owen T. Lewis, Sol Milne, Isaiah Mwesige, Akihiro Nakamura, Colleen S.</description>
     </item>
     
     <item>

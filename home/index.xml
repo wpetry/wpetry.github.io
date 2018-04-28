@@ -8,7 +8,55 @@
     <language>en-us</language>
     <copyright>&amp;copy; 2017 William Petry</copyright>
     <lastBuildDate>Wed, 20 Apr 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/home/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://wpetry.github.io/home/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>http://wpetry.github.io/home/about/</link>
+      <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://wpetry.github.io/home/about/</guid>
+      <description>I am a quantitative field ecologist exploring the dynamics of populations and communities through the lenses of species interactions and intraspecific variation. I develop mathematical models and collect field data to test theoretical predictions of how individual-level traits and interactions scale to generate the structure, function, and diversity we see in natural populations and communities.
+I am currently a postdoc in Jonathan Levine&amp;rsquo;s group at ETH Zurich in Switzerland, where I am focusing on how consumption and competition interact to control plant species diversity.</description>
+    </item>
+    
+    <item>
+      <title>Research</title>
+      <link>http://wpetry.github.io/home/projects/</link>
+      <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://wpetry.github.io/home/projects/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Publications</title>
+      <link>http://wpetry.github.io/home/publications_selected/</link>
+      <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://wpetry.github.io/home/publications_selected/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R scribbles</title>
+      <link>http://wpetry.github.io/home/posts/</link>
+      <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://wpetry.github.io/home/posts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Contact</title>
+      <link>http://wpetry.github.io/home/contact/</link>
+      <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://wpetry.github.io/home/contact/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

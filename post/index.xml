@@ -8,7 +8,9 @@
     <language>en-us</language>
     <copyright>&amp;copy; 2017 William Petry</copyright>
     <lastBuildDate>Fri, 21 Jul 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/post/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://wpetry.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>How many Switzerlands is a California?</title>
@@ -16,350 +18,14 @@
       <pubDate>Fri, 21 Jul 2017 00:00:00 +0000</pubDate>
       
       <guid>http://wpetry.github.io/post/howmanyswitzerlands/</guid>
-      <description>
-
-&lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
-
-&lt;p&gt;&lt;code&gt;elide&lt;/code&gt; offers tools to manipulate Spatial* objects of all types to compare unfamiliar spatial extents to more familiar benchmarks. This tutorial shows how to use this function to make compelling visual comparisons.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Featured skills:&lt;/em&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;elide&lt;/code&gt; to move, rotate, and scale Spatial* objects&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;aggregating polygons&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;calculating new polygons from overlapping polygons&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;calculating global and regional centroids&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;plotting spatial data with &lt;code&gt;ggplot2&lt;/code&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;UPDATE (September 2017)&lt;/strong&gt;: The &lt;code&gt;sf&lt;/code&gt; package has been developed to allow better integration of spatial data with the tidyverse. By re-imagining the way that spatial data are stored, many of these clunky steps to get shapefiles into &lt;code&gt;ggplot&lt;/code&gt; can now be avoided. However, not all &lt;code&gt;sp*&lt;/code&gt; functions are available yet as of this writing. For more, see the &lt;code&gt;sf&lt;/code&gt; package vignettes at&lt;br /&gt;
-&lt;a href=&#34;https://r-spatial.github.io/sf/&#34; target=&#34;_blank&#34;&gt;https://r-spatial.github.io/sf/&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h1 id=&#34;a-loss-in-translation&#34;&gt;A loss in translation&lt;/h1&gt;
-
-&lt;p&gt;Ecologists (and field scientists more generally) work over vastly different scales, and we rely on familiar units like sports field sizes, famous building heights, and administrative boundaries to communicate these scales in a meaningful way.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;But what happens when your audience doesn&amp;rsquo;t have a connection to these cultural touchstones?&lt;/strong&gt; I moved to Switzerland from the western United States earlier this year; the &lt;a href=&#34;https://en.wikipedia.org/wiki/List_of_counties_in_California#List&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;subdivisions&lt;/em&gt; of national subdivisions I&amp;rsquo;m used to&lt;/a&gt; are the size of &lt;a href=&#34;https://en.wikipedia.org/wiki/Cantons_of_Switzerland#List&#34; target=&#34;_blank&#34;&gt;national subdivisions&lt;/a&gt; and even &lt;a href=&#34;https://en.wikipedia.org/wiki/Liechtenstein&#34; target=&#34;_blank&#34;&gt;whole sovereign countries&lt;/a&gt;. Despite the relief of being able to use the metric system in daily interactions, most of my go-to &amp;ldquo;visceral units&amp;rdquo; are just as useless to my colleagues and my audiences here as the abstract large numbers they try to make tangible.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Here I show how to overlay countries and other administrative boundaries from all over the world using R, revealing their relative sizes in a visual, visceral way.&lt;/strong&gt; This tutorial was inspired by &lt;a href=&#34;https://www.zsl.org/users/rosie-woodroffe&#34; target=&#34;_blank&#34;&gt;Dr. Rosie Woodroffe&lt;/a&gt;, who very effectively deployed a similar visual strategy to communicate the enormous size of African Wild Dog home ranges in her recent seminar at the University of Zürich. There are several interactive tools available like &lt;a href=&#34;http://thetruesize.com/&#34; target=&#34;_blank&#34;&gt;The True Size Of&amp;hellip;&lt;/a&gt;, but none of them have the flexibility to handle custom spatial data. A handful of simple tools in R fill this gap.&lt;/p&gt;
-
-&lt;h1 id=&#34;data&#34;&gt;Data&lt;/h1&gt;
-
-&lt;p&gt;Numerical precision is an essential tool of science, but it tends to lose audiences whether composed of scientists or non-scientists. For a visual representation of scale, we need spatial data.&lt;/p&gt;
-
-&lt;p&gt;We&amp;rsquo;ll consider two examples:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;em&gt;Plotting my Ph.D. field sites against a Swiss-relevant benchmark.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;em&gt;Tiling California with Switzerlands to show off a few other features.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The administrative boundary data come from the &lt;a href=&#34;http://www.gadm.org/&#34; target=&#34;_blank&#34;&gt;Global Administrative Area database&lt;/a&gt;. I&amp;rsquo;ve also pulled in some open data archived with Dryad from my dissertation work.&lt;/p&gt;
-
-&lt;h1 id=&#34;code&#34;&gt;Code&lt;/h1&gt;
-
-&lt;h3 id=&#34;1-communicate-spatial-scale-in-x-to-an-audience-in-y&#34;&gt;1. Communicate spatial scale in X to an audience in Y&lt;/h3&gt;
-
-&lt;h4 id=&#34;1-1-preliminaries&#34;&gt;1.1. Preliminaries&lt;/h4&gt;
-
-&lt;p&gt;Load the packages containing the functions we&amp;rsquo;ll use. If you haven&amp;rsquo;t used these packages before, be sure to &lt;code&gt;install.packages&lt;/code&gt; first.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;library(raster)       # despite the name, we&#39;ll use it to access vector
-                      # representations of administrative boundaries
-library(rgeos)        # spatial tools
-library(maptools)     # more spatial tools
-library(tidyverse)    # data wrangling workhorse
-library(ggplot2)      # plotting workhorse
-library(ggmap)        # contains a useful theme_nothing for very simple maps
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Package versions used:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;##     Package    Version
-## 1     ggmap      2.6.1
-## 2   ggplot2      2.2.1
-## 3  maptools      0.9-2
-## 4    raster      2.5-8
-## 5     rgeos     0.3-23
-## 6 tidyverse      1.1.1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;1-2-retrieve-spatial-data&#34;&gt;1.2. Retrieve spatial data&lt;/h4&gt;
-
-&lt;p&gt;We&amp;rsquo;ll start by gathering the appropriate data and subsetting it where necessary. &lt;code&gt;getData&lt;/code&gt; will only download full countries where the &lt;code&gt;level&lt;/code&gt; argument specifies whether the boundaris are for the full country outline (&lt;code&gt;level = 0&lt;/code&gt;), first subdivisions (&lt;code&gt;level = 1&lt;/code&gt; like states, provinces, or cantons), or second subdivisions (&lt;code&gt;level = 2&lt;/code&gt; like US counties; only available for some countries). Note that a full list of ISO-3 country codes may be called using &lt;code&gt;getData(&amp;quot;ISO3&amp;quot;)&lt;/code&gt;. For more detail, check out the metadata at &lt;a href=&#34;http://www.gadm.org/&#34; target=&#34;_blank&#34;&gt;GADM&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;## Gunnison County, Colorado, USA
-# download US county boundaries
-USA.2 &amp;lt;- getData(&amp;quot;GADM&amp;quot;, country = &amp;quot;USA&amp;quot;, level = 2)
-# subset to focal county
-gunni &amp;lt;- USA.2 %&amp;gt;%
-  subset(., USA.2$NAME_2 == &amp;quot;Gunnison&amp;quot;)
-
-## Switzerland
-# download Switzerland country boundary, no subsetting necessary
-switz &amp;lt;- getData(&amp;quot;GADM&amp;quot;, country = &amp;quot;CHE&amp;quot;, level = 0)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;A quick plot just to make sure we specified the correct level illustrates the problem: we can&amp;rsquo;t just plot each polygon and expect them to line up. R automatically scales each polygon to fill the plot canvas, so the latitudinal range of &lt;code&gt;gunni&lt;/code&gt; is about 1.5° whereas the latitudinal range of &lt;code&gt;switz&lt;/code&gt; is closer to 5°. Moreover, they each occupy a different part of the coordinate range.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/qplot-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;1-3-move-mountains-and-lakes-rivers-cities&#34;&gt;1.3. Move mountains (and lakes, rivers, cities&amp;hellip;)&lt;/h4&gt;
-
-&lt;p&gt;The first step is to determine how far west and how far south we need to move Switzerland such that it aligns properly. One solution is to guess and check, but we don&amp;rsquo;t have all day. Instead we can calculate the centroids of both polygons, then calculate the rise (=latitude) and run (=longitude) of an imaginary right triangle whose hypotenuse is the direct path from centroid to centroid.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# centroid of Gunnison County
-gunni.center &amp;lt;- gCentroid(gunni)
-# centroid of Switzerland
-switz.center &amp;lt;- gCentroid(switz)
-# calculate latitudinal and longitudinal displacement of Switzerland using the centroid
-# of Gunnison County as a reference point
-shift &amp;lt;- coordinates(gunni.center)-coordinates(switz.center)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now we can use &lt;code&gt;elide&lt;/code&gt; to move the whole country of Switzerland (with free shipping!). R doesn&amp;rsquo;t know that we&amp;rsquo;ve accomplished such a herculean task. The polygon of Switzerland is just a polygon with no deeper meaning or expectation of where it should be relative to other places on our map. To avoid confusion (and preserve the correct position of Switzerland), we&amp;rsquo;ll store the shifted Switzerland in a new object.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;switz.shifted &amp;lt;- elide(switz, shift = shift)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;1-4-make-the-map&#34;&gt;1.4. Make the map&lt;/h4&gt;
-
-&lt;p&gt;And now for the big reveal, had I not so effectively spoiled it with the image at the top of the post. We&amp;rsquo;ll convert the polygons into ggplot2-friendly data frames, then build up our map layer by layer.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# &amp;quot;fortify&amp;quot; polygons into plottable data frames
-gunni.fort &amp;lt;- fortify(gunni)
-switz.shifted.fort &amp;lt;- fortify(switz.shifted)
-
-# make map
-overlay&amp;lt;-ggplot(data = gunni.fort, aes(y = lat, x = long, group = group, fill = NULL)) +
-  geom_polygon(fill = &amp;quot;transparent&amp;quot;, color = &amp;quot;blue&amp;quot;, size = 0.5) +  # plots Gunnison County
-  geom_polygon(data = switz.shifted.fort, aes(y = lat, x = long, group = group, fill = NULL),
-               fill = &amp;quot;transparent&amp;quot;, color = &amp;quot;black&amp;quot;, size = 0.5) +  # plots Switzerland
-  coord_equal() +
-  theme_nothing()
-
-## Warning: `panel.margin` is deprecated. Please use `panel.spacing` property
-## instead
-
-overlay
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/map1-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Our approximation based on the centroids of each polygon got us very close, but there&amp;rsquo;s a visually sloppy overlap along the southern borders. Ideally, we&amp;rsquo;d like Gunnison County (in blue) to fit nicely wihin the bounds of Switzerland (in black). From here the adjustment is manual: the east/west alignment of the centroids looks pretty good, but we need Switzerland to overshoot a little more to the south.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# leave longitude shift alone, adjust latitude shift a little more south
-shift2 &amp;lt;- coordinates(gunni.center)-coordinates(switz.center)-c(0,0.12) # units are in degrees!
-switz.shifted2 &amp;lt;- elide(switz, shift = shift2)
-switz.shifted.fort2 &amp;lt;- fortify(switz.shifted2)
-
-# update map and add some helpful labels
-overlay2&amp;lt;-ggplot(data = gunni.fort, aes(y = lat, x = long, group = group, fill = NULL)) +
-  geom_polygon(fill = &amp;quot;transparent&amp;quot;, color = &amp;quot;blue&amp;quot;, size = 0.5) +  # plots Gunnison County
-  geom_polygon(data = switz.shifted.fort2, aes(y = lat, x = long, group = group, fill = NULL),
-               fill = &amp;quot;transparent&amp;quot;, color = &amp;quot;black&amp;quot;, size = 0.5) +  # plots Switzerland
-  coord_equal() +
-  annotate(&amp;quot;text&amp;quot;, x = -106.955, y = 38.66481, label = &amp;quot;Gunnison County\nColorado, USA&amp;quot;, size = 4,
-           fontface = &amp;quot;bold&amp;quot;, color = &amp;quot;blue&amp;quot;) +
-  annotate(&amp;quot;text&amp;quot;, x = -107.955, y = 38.66481, label = &amp;quot;Switzerland&amp;quot;, size = 4, fontface = &amp;quot;bold&amp;quot;,
-           color = &amp;quot;black&amp;quot;) +
-  theme_nothing()
-
-## Warning: `panel.margin` is deprecated. Please use `panel.spacing` property
-## instead
-
-overlay2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/map2-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In reality my research didn&amp;rsquo;t cover the entirety of Gunnison County, so a more informative map would show the populations where I actually worked. So let&amp;rsquo;s do that (ht: journal requirements to archive raw data)&amp;hellip;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# Read in data with focal population coordinates
-pops&amp;lt;-read.csv(&amp;quot;http://datadryad.org/bitstream/handle/10255/dryad.119000/SexRatios.csv&amp;quot;)
-
-overlay3 &amp;lt;- overlay2 +
-  geom_point(data = pops, aes(x = longitude.dd, y = latitude.dd, group = NULL, fill = NULL),
-             shape = &amp;quot;+&amp;quot;, color = &amp;quot;blue&amp;quot;, size = 6) +
-  annotate(&amp;quot;text&amp;quot;, x = -106.955, y = 38.66481, label = &amp;quot;Gunnison County\nColorado, USA&amp;quot;, size = 4,
-           fontface = &amp;quot;bold&amp;quot;, color = &amp;quot;blue&amp;quot;)
-overlay3
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/pops-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;All that remains is to save the image in your desired file format. Dr. Woodroffe produced a nice effect by first showing a homerange polygon she made for a pack of African Wild Dogs that she&amp;rsquo;s been studying. The background was made transparent, so that the images of Wild Dogs in the background still shown through. Then she added the outline of Switzerland (also with a transparent background) to call emphasis to her point: a pack of Wild Dogs needs an area the size of several Swiss cantons to survive. Note that this is only possible with image formats that allow transparency (e.g. .png, .svg, .pdf).&lt;/p&gt;
-
-&lt;h3 id=&#34;2-how-many-switzerlands-is-a-california&#34;&gt;2. How many Switzerlands is a California?&lt;/h3&gt;
-
-&lt;p&gt;Admittedly this is an absurd question, though perhaps it could pass as merely whimsical if you the reader are feeling generous. However, it offers an opportunity to show off some other tricks &lt;code&gt;elide&lt;/code&gt; has hidden up its sleeve. You see, &lt;code&gt;elide&lt;/code&gt; doesn&amp;rsquo;t just move Spatial* objects to new latitudes and longitudes, it can do much, much more.&lt;/p&gt;
-
-&lt;p&gt;A quick look at &lt;code&gt;?elide&lt;/code&gt; tells all. In addition to the argument for &lt;code&gt;shift&lt;/code&gt; that we used to move Switzerland over to central Colorado, there are arguments to &lt;code&gt;reflect&lt;/code&gt; objects (sure to please &lt;a href=&#34;http://westwing.wikia.com/wiki/Somebody%27s_Going_to_Emergency,_Somebody%27s_Going_to_Jail&#34; target=&#34;_blank&#34;&gt;West Wing fans&lt;/a&gt;), &lt;code&gt;scale&lt;/code&gt; them to larger or smaller sizes while preserving shape, or &lt;code&gt;rotate&lt;/code&gt; them around any point. Moreover, &lt;code&gt;elide&lt;/code&gt; can work its magic on more than just vector files. With these tools you are the choreographer of continents, rewriting the rules of plate tectonics.&lt;/p&gt;
-
-&lt;h4 id=&#34;2-1-gather-spatial-data&#34;&gt;2.1. Gather spatial data&lt;/h4&gt;
-
-&lt;p&gt;We&amp;rsquo;ve already have an outline of Switzerland from code in §1.1. Now we&amp;rsquo;ll retrieve data for California. There are two ways of doing this. The mirrors our approach to isolating Gunnison County, Colorado from Level 2 data; we simply download Level 1 boundaries for the USA and subset to the state of California. The second merges all of the counties of California from the Level 2 data (already downloaded and in our work environment).&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;## Approach (a): Download states, subset to California
-USA.1 &amp;lt;- getData(&amp;quot;GADM&amp;quot;, country = &amp;quot;USA&amp;quot;, level = 1)
-# subset to focal county
-CAfromstates &amp;lt;- USA.1 %&amp;gt;%
-  subset(., USA.1$NAME_1 == &amp;quot;California&amp;quot;)
-
-## Approach (b): Merge counties to form California
-CAfromcounties &amp;lt;- USA.2 %&amp;gt;%
-  subset(., .$NAME_1 == &amp;quot;California&amp;quot;) %&amp;gt;%
-  unionSpatialPolygons(., .$ID_1) # ID_1 merges all polygons within California
-
-opar &amp;lt;- par(mfrow=c(1,2))  # panel plots
-plot(CAfromstates, main = &amp;quot;Subset states (Level 1)&amp;quot;)
-plot(CAfromcounties, main = &amp;quot;Merged counties (Level 2)&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/getcali-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;2-2-move-switzerlands-to-california-first-approximation&#34;&gt;2.2. Move Switzerlands to California: First approximation&lt;/h4&gt;
-
-&lt;p&gt;We&amp;rsquo;ll start by crudely estimating how many Switzerlands will fit in California. We can do this any number of ways, but for a rough idea we can look at the bounding boxes of both California and Switzerland with &lt;code&gt;bbox()&lt;/code&gt;. This will return the minima and maxima for both latitude (y) and longitude (x).&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# Absoulte bounding boxes
-bbox(CAfromstates)
-
-##          min        max
-## x -124.41556 -114.12949
-## y   32.53088   42.00983
-
-bbox(switz)
-
-##         min      max
-## x  5.956063 10.49511
-## y 45.817059 47.80848
-
-# Relative bounding boxes (column differences)
-(CA.dimensions &amp;lt;- bbox(CAfromstates)[, 2] - bbox(CAfromstates)[, 1])
-
-##         x         y 
-## 10.286072  9.478947
-
-(switz.dimensions &amp;lt;- bbox(switz)[, 2] - bbox(switz)[, 1])
-
-##        x        y 
-## 4.539049 1.991425
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;These measurements can be particularly misleading for longitude, because the distance between lines of longitude approaches 0 towards the poles. Switzerland, being located farther north, will thus have closer lines of longitude. Distances between latitude aren&amp;rsquo;t exactly equal because Earth is not a perfect sphere, but they&amp;rsquo;re more consistent. We&amp;rsquo;ll use latitude as the basis for a first guess of how many Switzerlands to use.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# Calculate a multiple describing how many Switzerland &amp;quot;heights&amp;quot; (=latitude range)
-# are needed to equal the &amp;quot;height&amp;quot; of California
-(mult &amp;lt;- CA.dimensions[&amp;quot;y&amp;quot;]/switz.dimensions[&amp;quot;y&amp;quot;])
-
-##        y 
-## 4.759882
-
-# Make five Switzerlands and move over to approximately line up with California
-CA.center &amp;lt;- gCentroid(CAfromstates)
-CA.longitude.center &amp;lt;- CA.center@coords[1]  # this will be the (shared) target longitude
-CA.latitudes &amp;lt;- seq(bbox(CAfromstates)[&amp;quot;y&amp;quot;, ][1],  # these will be the target latitudes
-                    bbox(CAfromstates)[&amp;quot;y&amp;quot;, ][2], length.out = ceiling(mult))
-shifts &amp;lt;- cbind(CA.longitude.center-coordinates(switz.center)[, &amp;quot;x&amp;quot;],
-                CA.latitudes-coordinates(switz.center)[, &amp;quot;y&amp;quot;])
-
-switz.shifted.list &amp;lt;- vector(mode = &amp;quot;list&amp;quot;) # create list to hold elided Switzerlands
-for(i in 1:nrow(shifts)){  # automatically generate and store enough elided Switzerlands
-  switz.shifted.list[[i]] &amp;lt;- elide(switz, shift = shifts[i, ])
-}
-
-# Visualize Switzerlands on California
-plot(CAfromstates)
-invisible(lapply(switz.shifted.list, function(x){plot(x, col = rgb(1, 0, 0, 0.8), border = &amp;quot;transparent&amp;quot;, add = T)}))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/chca1-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The result is a good first pass, but the alignment poorly matches the curved shape of California. Also, the northern-most and southern-most Switzerlands overlap borders of California. We could manually adjust all of these, but this would be a headache even with the small number of Switzerlands we&amp;rsquo;ve generated. Thankfully there&amp;rsquo;s a better way&amp;hellip;&lt;/p&gt;
-
-&lt;h4 id=&#34;2-3-move-switzerlands-to-california-a-better-approximation&#34;&gt;2.3. Move Switzerlands to California: A better approximation&lt;/h4&gt;
-
-&lt;p&gt;The strategy here is to divide and conqueor. We&amp;rsquo;ll cut California into latitudinal regions, then use the &lt;code&gt;gCentroid&lt;/code&gt; function from earlier to calculate a centroid for each region. Finally, we match a Switzerland to each region&amp;rsquo;s centroid.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;## Make five regional polygons (i.e. make 4 slender &amp;quot;cuts&amp;quot; of the latitudinal extent of CAfromstates)
-CAextent &amp;lt;- as(extent(CAfromstates), &#39;SpatialPolygons&#39;)
-crs(CAextent) &amp;lt;- proj4string(CAfromstates)
-regions &amp;lt;- data.frame(x = unname(bbox(CAfromstates)[&amp;quot;x&amp;quot;, ]),
-                      y = rep(seq(bbox(CAfromstates)[&amp;quot;y&amp;quot;, &amp;quot;min&amp;quot;], bbox(CAfromstates)[&amp;quot;y&amp;quot;, &amp;quot;max&amp;quot;], length.out = 6)[2:5], each = 2),
-                      id = rep(letters[1:4], each = 2)) %&amp;gt;%
-  split(., f = .$id) %&amp;gt;%
-  lapply(., function(x){Line(x[, c(&amp;quot;x&amp;quot;, &amp;quot;y&amp;quot;)])}) %&amp;gt;%
-  Lines(., ID = &amp;quot;breaks&amp;quot;) %&amp;gt;%
-  list(.) %&amp;gt;%
-  SpatialLines(., proj4string = CRS(proj4string(CAfromstates))) %&amp;gt;%
-  gBuffer(., width = 1e-8) %&amp;gt;%
-  gDifference(CAextent, .) %&amp;gt;%
-  disaggregate(.)
-
-## Warning in gBuffer(., width = 1e-08): Spatial object is not projected; GEOS
-## expects planar coordinates
-
-# Calculate centroids of each region
-region.centers &amp;lt;- gIntersection(CAfromstates, regions, byid = T) %&amp;gt;%
-  gCentroid(., byid = T)
-
-# Quick visualization that centroids were calculated correctly
-plot(regions)
-plot(CAfromstates, add = T)
-plot(region.centers, add = T)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/chca2-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;## Elide a Switzerland onto each centroid
-shifts2 &amp;lt;- cbind(coordinates(region.centers)[, &amp;quot;x&amp;quot;]-coordinates(switz.center)[, &amp;quot;x&amp;quot;],
-                coordinates(region.centers)[, &amp;quot;y&amp;quot;]-coordinates(switz.center)[, &amp;quot;y&amp;quot;])
-
-switz.shifted.list2 &amp;lt;- vector(mode = &amp;quot;list&amp;quot;) # create list to hold elided Switzerlands
-for(i in 1:nrow(shifts2)){  # automatically elide Switzerlands to the centroids
-  switz.shifted.list2[[i]] &amp;lt;- elide(switz, shift = shifts2[i, ])
-}
-
-# Quick visualization of the results
-plot(CAfromstates)
-invisible(lapply(switz.shifted.list2, function(x){plot(x, col = rgb(1, 0, 0, 0.8), border = &amp;quot;transparent&amp;quot;, add = T)}))
-points(region.centers, pch = &amp;quot;+&amp;quot;, col = &amp;quot;white&amp;quot;, cex = 6)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/chca2-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Here we can see that the fit is much better when using regional centers (white &amp;ldquo;+&amp;rdquo; symbols), especially as an automated approximation. Pardon the visual pun to the &lt;a href=&#34;https://en.wikipedia.org/wiki/Flag_of_Switzerland&#34; target=&#34;_blank&#34;&gt;flag of Switzerland&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h4 id=&#34;2-4-beyond-shifts&#34;&gt;2.4. Beyond shifts&lt;/h4&gt;
-
-&lt;p&gt;&lt;code&gt;elide&lt;/code&gt; also allows Spatial* objects to be rotated, perhaps allowing us to get a better fit. Let&amp;rsquo;s focus on the southern-most Switzerland, manually rotating it to better fit over southern California. We&amp;rsquo;ll tell it to rotate 200 degrees clockwise around its centroid (IMPORTANT: the center of rotation refers to the object before any other transformations have been applied).&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# Replace the 1st (southern-most) Switzerland, adding a rotation
-switz.shifted.list2[[1]] &amp;lt;- elide(switz, shift = shifts2[1, ], rotate = 200, center = coordinates(switz.center))
-plot(CAfromstates)
-invisible(lapply(switz.shifted.list2, function(x){plot(x, col = rgb(1, 0, 0, 0.8), border = &amp;quot;transparent&amp;quot;, add = T)}))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/rotate-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;From here on in, the fit battle is a game of (manual) guess-and-check. Still, we&amp;rsquo;ve gotten close enough that any person who has lived in Switzerland can understand the scale of California visually and viscerally.&lt;/p&gt;
-
-&lt;h1 id=&#34;upshot&#34;&gt;Upshot&lt;/h1&gt;
-
-&lt;p&gt;There are 4-5 Switzerlands in a California, and visualization helps give audiences in both places a sense of scale in the other.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ve broken two big rules with this post. First, manually aligning the positions of Spatial* objects is generally a &lt;strong&gt;really, really bad idea&lt;/strong&gt;. The &lt;code&gt;rgdal&lt;/code&gt; package has excellent tools for spatial transformation that will do what you tell it to correctly and reproducibly. Uses of &lt;code&gt;elide&lt;/code&gt; beyond producing figures should be approached with the upmost caution. Second, filling California with Swiss flag Switzerlands is wretched graphic design. Take it from Tufte who said:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Clutter and confusion are not attributes of data - they are&lt;br /&gt;
-shortcomings of design.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;But perhaps you foresaw some tongue-in-cheek from the post title. Now if only it were just as easy to &lt;code&gt;elide&lt;/code&gt; a decent burrito over here to Switzerland&amp;hellip;&lt;/p&gt;
-</description>
+      <description>Overview elide offers tools to manipulate Spatial* objects of all types to compare unfamiliar spatial extents to more familiar benchmarks. This tutorial shows how to use this function to make compelling visual comparisons.
+Featured skills:
+ elide to move, rotate, and scale Spatial* objects
+ aggregating polygons
+ calculating new polygons from overlapping polygons
+ calculating global and regional centroids
+ plotting spatial data with ggplot2
+  UPDATE (September 2017): The sf package has been developed to allow better integration of spatial data with the tidyverse.</description>
     </item>
     
     <item>
@@ -368,30 +34,8 @@ shortcomings of design.&lt;/p&gt;
       <pubDate>Tue, 02 May 2017 00:00:00 +0000</pubDate>
       
       <guid>http://wpetry.github.io/post/tempdemog/</guid>
-      <description>
-
-&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/temp_shinyapp.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;[Start playing with &lt;a href=&#34;https://ecodynamics.shinyapps.io/temperature/&#34; target=&#34;_blank&#34;&gt;the R Shiny app&lt;/a&gt; or download the source files from my &lt;a href=&#34;https://github.com/wpetry/ETHZQuantMethods/tree/master/Temperature&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt; to run it locally in RStudio]&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;This interactive model—developed with &lt;a href=&#34;http://johnsonecology.weebly.com/&#34; target=&#34;_blank&#34;&gt;Chris Johnson&lt;/a&gt;—projects the population dynamics a simple organism that has two temperature-sensitive life stages, a juvenile and an adult. We might choose such a model for organisms like frogs (tadpoles/adults), insects (larvae/adults), or other poikilothermic ectotherm. The model assumes that each stage has an optimal temperature for its various life history functions. Adult reproduction rates are highest at 20°C, dropping sharply and symmetrically at lower or higher temperatures. Development is slow at low temperatures, peaks around 21-22°C, and drops to zero around 30°C. Finally, mortality for both stages increases with increasing temperature, but does so more rapidly for adults.&lt;/p&gt;
-
-&lt;p&gt;The model takes the form of a system of differential equations, shown in the &amp;ldquo;Model description&amp;rdquo; tab. Users have the opportunity to move a temperature slider to explore how the densities of juveniles and adults are projected to change as a function of temperature. The key insights are that:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;life history trade-offs mean that optimizing one demographic rate inevitably moves other rates off their optima&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;juveniles and adults have different &amp;ldquo;values&amp;rdquo; for total population density&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;the equilibrium stage structure is highly sensitive to temperature&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;populations can crash well within the physiological temperature limits of individuals&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;recommended-reading&#34;&gt;Recommended reading:&lt;/h3&gt;
-
-&lt;p&gt;Johnson, C. A., Coutinho, R. M., Berlin, E., Dolphin, K. E., Heyer, J., Kim, B., Leung, A., Sabellon, J. L. and Amarasekare, P. (2016), Effects of temperature and resource variation on insect population dynamics: the bordered plant bug as a case study. Functional Ecology 30:1122–1131. doi: 10.&lt;sup&gt;1111&lt;/sup&gt;&amp;frasl;&lt;sub&gt;1365&lt;/sub&gt;-2435.12583 &lt;a href=&#34;http://dx.doi.org/10.1111/1365-2435.12583&#34; target=&#34;_blank&#34;&gt;link&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>[Start playing with the R Shiny app or download the source files from my GitHub to run it locally in RStudio]
+This interactive model—developed with Chris Johnson—projects the population dynamics a simple organism that has two temperature-sensitive life stages, a juvenile and an adult. We might choose such a model for organisms like frogs (tadpoles/adults), insects (larvae/adults), or other poikilothermic ectotherm. The model assumes that each stage has an optimal temperature for its various life history functions.</description>
     </item>
     
     <item>
@@ -400,81 +44,8 @@ shortcomings of design.&lt;/p&gt;
       <pubDate>Fri, 28 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>http://wpetry.github.io/post/demogdarkcorners/</guid>
-      <description>
-
-&lt;p&gt;&lt;em&gt;[Originally posted on the &lt;a href=&#34;https://compadredb.wordpress.com/2017/04/28/illuminating-the-worlds-demographic-dark-corners/&#34; target=&#34;_blank&#34;&gt;COM(P)ADRE blog&lt;/a&gt; on 28 April 2017]&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;When I first downloaded COMPADRE mere moments after it went public, I was attending the EvoDemoS meeting at Stanford; we were less than 60 km from the nearest matrix population model in the database (&lt;em&gt;Calochortus tiburonensis&lt;/em&gt;; Fiedler 1987). My Ph.D. fieldwork brought me considerably closer, and not just because I worked with historic matrix population models collected near the field station. Instead yellow-bellied marmots (Marmota flaviventris (Ozgul et al. 2009, 2010)) scratched and gnawed under my cabin’s floorboards every day. In short, my thinking about demography has been shaped not only by very well-studied places, but also in them.&lt;/p&gt;
-
-&lt;p&gt;It will come as no surprise to most readers of this blog that certain regions of the world and branches of the tree of life are strongly represented than in biological databases, whereas other parts and taxa are almost entirely unsampled. COMPADRE and COMADRE are no exception (Salguero-Gómez et al. 2015, 2016). But we lose a lot of information by only considering the current state of our field’s geographic bias. We stand to learn much more if we could see its trajectory. By analogy, the power of matrix models stems from connecting static snapshots of a population’s state to reveal the motion of life histories and population dynamics as they unfold in time. We can use an analogous approach to animate our progress towards illuminating the dark corners of demography. I was curious what these patterns would show, so I did just that using the &amp;gt;50 years of georeferenced matrix population models contained in the latest releases of COMPADRE and COMADRE.&lt;/p&gt;
-
-&lt;p&gt;We most commonly think about spatial biases as hotspots of research activity, but what happens when we flip that question around and ask where the least studied places are? To do this, I wrote &lt;a href=&#34;https://gist.github.com/wpetry/8eb56e45e8e3fde480b2c153a154f63d&#34; target=&#34;_blank&#34;&gt;an R script&lt;/a&gt; that divides the Earth’s surface into pixels and measures the distance from each pixel to the nearest matrix population model&lt;sup&gt;&amp;ast;&lt;/sup&gt; (Fig. 1)—the brightest pixels show populations where a matrix model has been constructed. It’s then very easy to find the place that is the most isolated from the illumination of demography.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/comp_iso.png&#34; alt=&#34;fig1&#34; /&gt;&lt;/p&gt;
-
-&lt;h5 id=&#34;fig-1-the-current-darkest-corners-of-demography-for-a-plant-matrix-population-models-in-the-compadre-database-and-b-animal-matrix-population-models-in-the-comadre-database-the-most-isolated-points-from-all-matrix-population-models-are-shown-as-colored-dots-blue-square-of-the-whole-earth-green-triangle-of-land-masses-yellow-circle-of-land-masses-excluding-the-largely-uninhabitable-antarctica&#34;&gt;Fig. 1. The current darkest corners of demography for (A) plant matrix population models in the COMPADRE database and (B) animal matrix population models in the COMADRE database. The most isolated points from all matrix population models are shown as colored dots (blue square: of the whole Earth, green triangle: of land masses, yellow circle: of land masses excluding the largely uninhabitable Antarctica).&lt;/h5&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;In the most recent versions of the datasets, Henderson Island and Rapa Nui (Easter Island) are the most isolated lands from a matrix model for plants and animals, respectively&lt;sup&gt;**&lt;/sup&gt;. To me, two other patterns are apparent when the data are presented this way. First, plant demographers (Fig. 1A) have better sampled the tropics than have animal demographers. Part of this may stem from the fact that many animals are almost certainly harder to mark and recapture in a dense tropical forest whereas plants are more easily re-found. The second pattern that strikes me is that animal demographers have sampled oceanic islands much more thoroughly than plant demographers. Again, this may be related to the higher mobility of animals and the desirability of a closed population (e.g., sheep wrangling on St. Kilda vs. anywhere on the mainland). However, it may also be related to the fact that many pelagic animals use remote islands as breeding locations (e.g., the Laysan albatross). Most animal matrix models are age structured, so marking animals at birth is made considerably easier if they all gather in one place to raise young.  You may have other candidate explanations for these differing spatial biases, and I’d certainly be keen to hear them.&lt;/p&gt;
-
-&lt;p&gt;By animating these maps over time, we gain a much deeper understanding of how demographers have been illuminating demographic dark corners, and we can see how bringing demographic models to new areas changes the arrangement of the darkest corners (Fig. 2).&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/iso_compadre.gif&#34; alt=&#34;fig2a&#34; /&gt;&lt;br /&gt;
-&lt;img src=&#34;http://wpetry.github.io/img/iso_comadre.gif&#34; alt=&#34;fig2b&#34; /&gt;&lt;/p&gt;
-
-&lt;h6 id=&#34;fig-2-how-the-demographic-darkest-corner-has-moved-since-the-advent-of-matrix-population-models-1965-2016-plant-matrix-models-from-compadre-above-and-animal-matrix-models-from-comadre-below-are-shown-separately-with-symbols-as-in-fig-1-the-color-gradient-rescales-each-year-to-better-highlight-the-least-known-areas&#34;&gt;Fig. 2. How the demographic darkest corner has moved since the advent of matrix population models (1965-2016). Plant matrix models from COMPADRE (above) and animal matrix models from COMADRE (below) are shown separately with symbols as in Fig. 1. The color gradient rescales each year to better highlight the least known areas.&lt;/h6&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Finally, we can condense this information into a plot of how the distance to the most isolated place has decreased over time as more demographic studies have been conducted (Fig. 3).&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://wpetry.github.io/img/iso_change_time.png&#34; alt=&#34;fig3&#34; /&gt;&lt;/p&gt;
-
-&lt;h6 id=&#34;fig-3-decline-in-the-maximum-solid-line-and-median-dashed-line-distances-away-from-a-matrix-population-model-for-compadre-left-and-comadre-right-over-time-colours-show-different-subsets-where-blue-is-any-point-on-land-or-water-green-is-restricted-to-points-on-land-and-yellow-is-restricted-to-points-on-land-excluding-antarctica-note-that-the-maximum-possible-isolation-distance-on-earth-is-approximately-20-038-km&#34;&gt;Fig. 3. Decline in the maximum (solid line) and median (dashed line) distances away from a matrix population model for COMPADRE (left) and COMADRE (right) over time. Colours show different subsets where blue is any point on land or water, green is restricted to points on land, and yellow is restricted to points on land excluding Antarctica. Note that the maximum possible isolation distance on Earth is approximately 20,038 km.&lt;/h6&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Even though COMPADRE has more than twice the number of unique population locations than does COMADRE, the demographic dark places for plants have remained darker for plants than for animals since the late 1980s. Moreover, Henderson Island has remained the most isolated point from plant demography for almost 20 years! The picture is a bit more optimistic if we look at the median distance from a matrix model. In just over 50 years, we have sampled such that half of the world is &amp;lt;1500 km from a plant matrix model and is &amp;lt;1300 km from an animal matrix model.&lt;/p&gt;
-
-&lt;p&gt;It’s worth asking what, if anything, we’re missing with these geographic biases. For plants, we’re certainly under-sampling some disturbance regimes and life histories that tend to be more common on small remote islands. For example, &amp;lt;&amp;lt;1% of taxa in COMPADRE are dioecious (i.e., separate sexes) compared to ca. 5% of plant species that have this sexual system (Renner 2014). Improved sampling of oceanic islands—several of which have elevated frequencies of dioecious species (Sakai and Weller 1999)—could simultaneously reduce both the geographic and life history biases in the database. For animals, sampling is sparsest in some of the most species rich ecosystems on the plant like the Amazon, the Congo, and tropical southeast Asia. It’s hard to imagine how better sampling in these areas could fail to reveal unique and surprising insights.&lt;/p&gt;
-
-&lt;p&gt;As I now write this from my postdoc position in Zurich I’m again finding myself in a demographic bright spot. The nearest matrix population model is an hour away by train (white stork, &lt;em&gt;Ciconia ciconia&lt;/em&gt;; (Schaub et al. 2004)). Rapa Nui, on the other hand would be 34 hours by plane&lt;sup&gt;***&lt;/sup&gt;, and Henderson Island is all but impossible to reach without a private yacht. Still, we can and should work to target more accessible places that are nonetheless demographic dark spots. Moreover, we can bolster the utility of these databases by targeting clades and life history strategies that are underrepresented, but that will have to remain the subject for a future post.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&amp;ast; This is a raster-based approximation of Voronoi polygons. It’s slow and clunky, but it has the advantage of accounting for the Earth’s ellipsoid shape. I used the WGS84 ellipsoid and cells that are 1/12° (+/-9.25 km) on each side.&lt;/p&gt;
-
-&lt;p&gt;** And here I reveal my own terrestrial bias.&lt;/p&gt;
-
-&lt;p&gt;*** Assuming no connections go awry.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;literature-cited&#34;&gt;&lt;strong&gt;Literature cited&lt;/strong&gt;&lt;/h2&gt;
-
-&lt;p&gt;Fiedler, P. L. 1987. Life history and population dynamics of rare and common mariposa lilies (&lt;em&gt;Calochortus&lt;/em&gt; Pursh: Liliaceae). Journal of Ecology 75:977–995.&lt;/p&gt;
-
-&lt;p&gt;Ozgul, A., D. Z. Childs, M. K. Oli, K. B. Armitage, D. T. Blumstein, L. E. Olson, S. Tuljapurkar, and T. Coulson. 2010. Coupled dynamics of body mass and population growth in response to environmental change. Nature 466:482–485.&lt;/p&gt;
-
-&lt;p&gt;Ozgul, A., M. K. Oli, K. B. Armitage, D. T. Blumstein, and D. H. Van Vuren. 2009. Influence of local demography on asymptotic and transient dynamics of a yellow‐bellied marmot metapopulation. The American Naturalist 173:517–530.&lt;/p&gt;
-
-&lt;p&gt;Renner, S. S. 2014. The relative and absolute frequencies of angiosperm sexual systems: Dioecy, monoecy, gynodioecy, and an updated online database. American Journal of Botany.&lt;/p&gt;
-
-&lt;p&gt;Sakai, A. K., and S. G. Weller. 1999. Gender and sexual dimorphism in flowering plants: A review of terminology, biogeographic patterns, ecological correlates, and phylogenetic approaches. Pages 1–31 in M. A. Geber, T. E. Dawson, and L. F. Delph, editors. Gender and sexual dimorphism in flowering plants. Springer Berlin Heidelberg.&lt;/p&gt;
-
-&lt;p&gt;Salguero-Gómez, R., O. R. Jones, C. R. Archer, C. Bein, H. de Buhr, C. Farack, F. Gottschalk, A. Hartmann, A. Henning, G. Hoppe, G. Römer, T. Ruoff, V. Sommer, J. Wille, J. Voigt, S. Zeh, D. Vieregg, Y. M. Buckley, J. Che-Castaldo, D. Hodgson, A. Scheuerlein, H. Caswell, and J. W. Vaupel. 2016. COMADRE: a global data base of animal demography. Journal of Animal Ecology 85:371–384.&lt;/p&gt;
-
-&lt;p&gt;Salguero-Gómez, R., O. R. Jones, C. R. Archer, Y. M. Buckley, J. Che-Castaldo, H. Caswell, D. Hodgson, A. Scheuerlein, D. A. Conde, E. Brinks, H. de Buhr, C. Farack, F. Gottschalk, A. Hartmann, A. Henning, G. Hoppe, G. Römer, J. Runge, T. Ruoff, J. Wille, S. Zeh, R. Davison, D. Vieregg, A. Baudisch, R. Altwegg, F. Colchero, M. Dong, H. de Kroon, J.-D. Lebreton, C. J. E. Metcalf, M. M. Neel, I. M. Parker, T. Takada, T. Valverde, L. A. Vélez-Espino, G. M. Wardle, M. Franco, and J. W. Vaupel. 2015. The COMPADRE plant matrix database: An open online repository for plant demography. Journal of Ecology 103:202–218.&lt;/p&gt;
-
-&lt;p&gt;Schaub, M., R. Pradel, and J.-D. Lebreton. 2004. Is the reintroduced white stork (&lt;em&gt;Ciconia ciconia&lt;/em&gt;) population in Switzerland self-sustainable? Biological Conservation 119:105–114.&lt;/p&gt;
-</description>
+      <description>[Originally posted on the COM(P)ADRE blog on 28 April 2017]
+When I first downloaded COMPADRE mere moments after it went public, I was attending the EvoDemoS meeting at Stanford; we were less than 60 km from the nearest matrix population model in the database (Calochortus tiburonensis; Fiedler 1987). My Ph.D. fieldwork brought me considerably closer, and not just because I worked with historic matrix population models collected near the field station.</description>
     </item>
     
     <item>
@@ -483,10 +54,8 @@ shortcomings of design.&lt;/p&gt;
       <pubDate>Sat, 18 Mar 2017 00:00:00 +0000</pubDate>
       
       <guid>http://wpetry.github.io/post/helloworld/</guid>
-      <description>&lt;p&gt;In the spirit of open data, I&amp;rsquo;ve moved towards posting the raw data and code that underlie my science (see &lt;a href=&#34;http://dx.doi.org/10.5061/dryad.d6rb0&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;, &lt;a href=&#34;http://dx.doi.org/10.5061/dryad.1cf8p&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;, and &lt;a href=&#34;http://dx.doi.org/10.5061/dryad.j432q&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt; for recent examples). Occaisionally I work on small side projects that make for neat stories, but don&amp;rsquo;t always make it to a publication. Here is where I&amp;rsquo;ll post short write ups that highlight ideas and data analysis tools.&lt;/p&gt;
-
-&lt;p&gt;Hardly regular, hopefully somewhat original&amp;hellip;&lt;/p&gt;
-</description>
+      <description>In the spirit of open data, I&amp;rsquo;ve moved towards posting the raw data and code that underlie my science (see here, here, and here for recent examples). Occaisionally I work on small side projects that make for neat stories, but don&amp;rsquo;t always make it to a publication. Here is where I&amp;rsquo;ll post short write ups that highlight ideas and data analysis tools.
+Hardly regular, hopefully somewhat original&amp;hellip;</description>
     </item>
     
   </channel>
