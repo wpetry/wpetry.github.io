@@ -18,14 +18,7 @@
       <pubDate>Fri, 21 Jul 2017 00:00:00 +0000</pubDate>
       
       <guid>http://wpetry.github.io/post/howmanyswitzerlands/</guid>
-      <description>Overview elide offers tools to manipulate Spatial* objects of all types to compare unfamiliar spatial extents to more familiar benchmarks. This tutorial shows how to use this function to make compelling visual comparisons.
-Featured skills:
- elide to move, rotate, and scale Spatial* objects
- aggregating polygons
- calculating new polygons from overlapping polygons
- calculating global and regional centroids
- plotting spatial data with ggplot2
-  UPDATE (September 2017): The sf package has been developed to allow better integration of spatial data with the tidyverse.</description>
+      <description>My current field work is split between the western United States and Switzerland, areas where political boundaries are drawn on vastly different scales. This makes communicating scale very difficult to audiences in both places. Here I show how to overlay countries and other administrative boundaries from all over the world using R, revealing their relative sizes in a visual, visceral way.</description>
     </item>
     
     <item>
@@ -34,8 +27,7 @@ Featured skills:
       <pubDate>Tue, 02 May 2017 00:00:00 +0000</pubDate>
       
       <guid>http://wpetry.github.io/post/tempdemog/</guid>
-      <description>[Start playing with the R Shiny app or download the source files from my GitHub to run it locally in RStudio]
-This interactive model—developed with Chris Johnson—projects the population dynamics a simple organism that has two temperature-sensitive life stages, a juvenile and an adult. We might choose such a model for organisms like frogs (tadpoles/adults), insects (larvae/adults), or other poikilothermic ectotherm. The model assumes that each stage has an optimal temperature for its various life history functions.</description>
+      <description>The role of individual heterogeneity in population and community dynamics is a centerpiece of my research program. Here I collaborated with Chris Johnson (ETH Zürich) to build an interactive toy model for teaching this concept in an undergraduate course on quantitative methods in ecology at ETH Zürich.</description>
     </item>
     
     <item>
@@ -44,8 +36,7 @@ This interactive model—developed with Chris Johnson—projects the population 
       <pubDate>Fri, 28 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>http://wpetry.github.io/post/demogdarkcorners/</guid>
-      <description>[Originally posted on the COM(P)ADRE blog on 28 April 2017]
-When I first downloaded COMPADRE mere moments after it went public, I was attending the EvoDemoS meeting at Stanford; we were less than 60 km from the nearest matrix population model in the database (Calochortus tiburonensis; Fiedler 1987). My Ph.D. fieldwork brought me considerably closer, and not just because I worked with historic matrix population models collected near the field station.</description>
+      <description>Demographic models are a widely used and indispensable tool for population ecology. But even after decades of proliferation, they have yet to reach many parts of the world. Here I explore the geographic biases in the COMPADRE and COMADRE databases and reflect on how this affects our understanding of population processes.</description>
     </item>
     
     <item>
@@ -54,8 +45,7 @@ When I first downloaded COMPADRE mere moments after it went public, I was attend
       <pubDate>Sat, 18 Mar 2017 00:00:00 +0000</pubDate>
       
       <guid>http://wpetry.github.io/post/helloworld/</guid>
-      <description>In the spirit of open data, I&amp;rsquo;ve moved towards posting the raw data and code that underlie my science (see here, here, and here for recent examples). Occaisionally I work on small side projects that make for neat stories, but don&amp;rsquo;t always make it to a publication. Here is where I&amp;rsquo;ll post short write ups that highlight ideas and data analysis tools.
-Hardly regular, hopefully somewhat original&amp;hellip;</description>
+      <description>A huge number of R tutorials and open data analyses are now available on the web. From time to time I&amp;rsquo;ll add to the bouquet here.</description>
     </item>
     
   </channel>
